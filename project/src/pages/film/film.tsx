@@ -6,7 +6,7 @@ function Film(): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="../project/public/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -23,7 +23,7 @@ function Film(): JSX.Element {
             <ul className="user-block">
               <li className="user-block__item">
                 <div className="user-block__avatar">
-                  <img src="../project/public/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
                 </div>
               </li>
               <li className="user-block__item">
@@ -63,7 +63,7 @@ function Film(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="../project/public/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster"
+              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster"
                 width="218" height="327"
               />
             </div>
@@ -122,7 +122,7 @@ function Film(): JSX.Element {
           <div className="catalog__films-list">
             <article className="small-film-card catalog__films-card">
               <div className="small-film-card__image">
-                <img src="../project/public/img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
                   alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"
                 />
               </div>
@@ -135,7 +135,7 @@ function Film(): JSX.Element {
 
             <article className="small-film-card catalog__films-card">
               <div className="small-film-card__image">
-                <img src="../project/public/img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280"
+                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280"
                   height="175"
                 />
               </div>
@@ -146,7 +146,7 @@ function Film(): JSX.Element {
 
             <article className="small-film-card catalog__films-card">
               <div className="small-film-card__image">
-                <img src="../project/public/img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
+                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
                 <a className="small-film-card__link" href="film-page.html">Macbeth</a>
@@ -155,7 +155,7 @@ function Film(): JSX.Element {
 
             <article className="small-film-card catalog__films-card">
               <div className="small-film-card__image">
-                <img src="../project/public/img/aviator.jpg" alt="Aviator" width="280" height="175"/>
+                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
               </div>
               <h3 className="small-film-card__title">
                 <a className="small-film-card__link" href="film-page.html">Aviator</a>

@@ -16,7 +16,7 @@ function MyList(): JSX.Element {
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src="../project/public/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
             </div>
           </li>
           <li className="user-block__item">
