@@ -8,28 +8,32 @@ import NonExistentPage from '../../pages/non-existent-page/non-existent-page';
 import AddReview from '../../pages/add-review/add-review';
 import PrivateRoute from '../private-route/private-route';
 import MyList from '../../pages/my-list/my-list';
+import {FilmType} from '../../types/film-type';
 
-type WelcomeScreenProps = {
-  name: string;
-  genre: string;
-  date: string;
+type AppProps = {
+  films : FilmType[];
 }
 
-function App({name, genre, date} : WelcomeScreenProps): JSX.Element {
+function App({films} : AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<WelcomeScreen name={name} genre={genre} date={date}/>}
+          element={
+            <WelcomeScreen
+              mainFilm={films[0]}
+              films={films}
+            />
+          }
         />
         <Route
           path={AppRoute.Film}
-          element={<Film />}
+          element={<Film films={films}/>}
         />
         <Route
           path={AppRoute.Player}
-          element={<Player />}
+          element={<Player films={films}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -39,15 +43,15 @@ function App({name, genre, date} : WelcomeScreenProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyList />
+              <MyList films={films}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview />}
+          element={<AddReview film={films[0]}/>}
         />
         <Route
           path="*"
