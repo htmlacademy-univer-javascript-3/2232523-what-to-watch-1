@@ -24,8 +24,7 @@ export const films: FilmType[] = [
     releaseYear: 2011,
     id: 1,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
@@ -48,32 +47,30 @@ export const films: FilmType[] = [
     releaseYear: 2012,
     id: 1,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   {
-    name: 'Aviator',
+    name: 'Bronson',
     posterImage:
-      'https://10.react.pages.academy/static/film/poster/Aviator.jpg',
+      'https://10.react.pages.academy/static/film/poster/bronson.jpg',
     previewImage:
-      'https://10.react.pages.academy/static/film/preview/aviator.jpg',
+      'https://10.react.pages.academy/static/film/preview/bronson.jpg',
     backgroundImage:
-      'https://10.react.pages.academy/static/film/background/Aviator.jpg',
+      'https://10.react.pages.academy/static/film/background/bronson.jpg',
     description:
-      'A biopic depicting the early years of legendary Director and aviator Howard Hughes career from the late 1920s to the mid 1940s.',
-    rating: 9.8,
-    votesNumber: 8558,
-    director: 'Martin Scorsese',
-    actors: ['Leonardo DiCaprio', 'Cate Blanchett', 'Kate Beckinsale'],
-    duration: 170,
-    genre: 'Drama',
-    releaseYear: 2014,
-    id: 2,
+      'A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.',
+    rating: 3.6,
+    votesNumber: 998866,
+    director: 'Nicolas Winding Refn',
+    actors: ['Tom Hardy', 'Kelly Adams', 'Luing Andrews'],
+    duration: 92,
+    genre: 'Action',
+    releaseYear: 2008,
+    id: 6,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
@@ -96,8 +93,7 @@ export const films: FilmType[] = [
     releaseYear: 1992,
     id: 3,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
@@ -123,8 +119,30 @@ export const films: FilmType[] = [
     releaseYear: 2000,
     id: 4,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    previewVideoLink:
+      'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+  },
+  {
+    name: 'Aviator',
+    posterImage:
+      'https://10.react.pages.academy/static/film/poster/Aviator.jpg',
+    previewImage:
+      'https://10.react.pages.academy/static/film/preview/aviator.jpg',
+    backgroundImage:
+      'https://10.react.pages.academy/static/film/background/Aviator.jpg',
+    description:
+      'A biopic depicting the early years of legendary Director and aviator Howard Hughes career from the late 1920s to the mid 1940s.',
+    rating: 9.8,
+    votesNumber: 8558,
+    director: 'Martin Scorsese',
+    actors: ['Leonardo DiCaprio', 'Cate Blanchett', 'Kate Beckinsale'],
+    duration: 170,
+    genre: 'Drama',
+    releaseYear: 2014,
+    id: 2,
+    addMyList: false,
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
@@ -147,32 +165,7 @@ export const films: FilmType[] = [
     releaseYear: 2010,
     id: 5,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
-    previewVideoLink:
-      'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-  },
-  {
-    name: 'Bronson',
-    posterImage:
-      'https://10.react.pages.academy/static/film/poster/bronson.jpg',
-    previewImage:
-      'https://10.react.pages.academy/static/film/preview/bronson.jpg',
-    backgroundImage:
-      'https://10.react.pages.academy/static/film/background/bronson.jpg',
-    description:
-      'A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.',
-    rating: 3.6,
-    votesNumber: 998866,
-    director: 'Nicolas Winding Refn',
-    actors: ['Tom Hardy', 'Kelly Adams', 'Luing Andrews'],
-    duration: 92,
-    genre: 'Action',
-    releaseYear: 2008,
-    id: 6,
-    addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
@@ -195,8 +188,7 @@ export const films: FilmType[] = [
     releaseYear: 1997,
     id: 7,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
@@ -219,8 +211,7 @@ export const films: FilmType[] = [
     releaseYear: 1994,
     id: 8,
     addMyList: false,
-    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/\
-    Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
