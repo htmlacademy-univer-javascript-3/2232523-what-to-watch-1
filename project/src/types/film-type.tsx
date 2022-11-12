@@ -15,4 +15,13 @@ export type FilmType = {
     genre: string;
     releaseYear: number;
     addMyList: boolean;
+    reviews: Review[];
   };
+
+export type Review = {
+  id: number,
+  rating: number,
+  author: string,
+  date: string,
+  text: string
+};

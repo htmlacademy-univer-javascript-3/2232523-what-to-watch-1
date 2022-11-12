@@ -1,19 +1,26 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams, Navigate } from 'react-router-dom';
 import React from 'react';
 import {FilmType} from '../../types/film-type';
-import Catalog from '../../components/catalog/catalog';
+import FilmDescription from '../../components/film-description/film-description';
+import SimilarFilms from '../../components/similar-films/similar-films';
 
 type FilmProps = {
   films: FilmType[];
 }
 
 function Film({films}: FilmProps): JSX.Element {
+  const id = Number(useParams().id);
+  const film = films.find((currentFilm) => currentFilm.id === id);
+
+  if (!film) {
+    return <Navigate to={'/*'}/>;
+  }
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src={films[0].posterImage} alt={films[0].name}/>
+            <img src={film.backgroundImage} alt={film.name}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -41,15 +48,15 @@ function Film({films}: FilmProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0].name}</h2>
+              <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0].genre}</span>
-                <span className="film-card__year">{films[0].releaseYear}</span>
+                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__year">{film.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
                 <Link
-                  to={`/player/${films[0].id}`}
+                  to={`/player/${film.id}`}
                   className="btn btn--play film-card__button"
                   type="button"
                 >
@@ -68,7 +75,7 @@ function Film({films}: FilmProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </Link>
-                <Link to={`/films/${films[0].id}/review`} className="btn film-card__button">Add review</Link>
+                <Link to={`/films/${film.id}/review`} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -77,47 +84,12 @@ function Film({films}: FilmProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={films[0].posterImage}
-                alt={`${films[0].name } poster`}
+              <img src={film.posterImage}
+                alt={`${film.name } poster`}
                 width="218" height="327"
               />
             </div>
-
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{films[0].description}</p>
-
-                <p className="film-card__director"><strong>Director: {films[0].director}</strong></p>
-
-                <p className="film-card__starring">
-                  <strong>Starring: {films[0].actors.join(', ')}
-                  and other
-                  </strong>
-                </p>
-              </div>
-            </div>
+            <FilmDescription film={film}/>
           </div>
         </div>
       </section>
@@ -127,7 +99,7 @@ function Film({films}: FilmProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <Catalog films={films.slice(1,)}></Catalog>
+            <SimilarFilms films={films} currentFilm={film} currentFilmId={film.id}/>
           </div>
         </section>
 
