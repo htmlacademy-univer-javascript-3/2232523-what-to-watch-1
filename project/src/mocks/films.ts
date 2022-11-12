@@ -27,6 +27,38 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: [{
+      id: 1,
+      rating: 8.0,
+      author: 'Amanda Greever',
+      date: 'November 18, 2015',
+      text: 'I didn\'t find it amusing, and while I can appreciate the creativity, it\'s an hour and 40 minutes I wish I could take back.'
+    }, {
+      id: 2,
+      rating: 8.0,
+      author: 'Bill Goodykoontz',
+      date: 'November 18, 2015',
+      text: 'nderson\'s films are too precious for some, but for those of us willing to lose ourselves in them, they\'re a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.'
+    }, {
+      id: 3,
+      rating: 7.2,
+      author: 'Matthew Lickona',
+      date: 'December 20, 2016',
+      text: 'The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.'
+    }, {
+      id: 4,
+      rating: 8.0,
+      author: 'Amanda Greever',
+      date: 'November 18, 2015',
+      text: 'I didn\'t find it amusing, and while I can appreciate the creativity, it\'s an hour and 40 minutes I wish I could take back.'
+    }, {
+      id: 5,
+      rating: 8.0,
+      author: 'Amanda Greever',
+      date: 'November 18, 2015',
+      text: 'I didn\'t find it amusing, and while I can appreciate the creativity, it\'s an hour and 40 minutes I wish I could take back.'
+    },
+    ]
   },
   {
     name: 'Moonrise Kingdom',
@@ -50,6 +82,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Bronson',
@@ -73,6 +106,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Orlando',
@@ -96,6 +130,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Beach',
@@ -122,6 +157,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Aviator',
@@ -145,6 +181,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Shutter Island',
@@ -168,6 +205,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Seven Years in Tibet',
@@ -191,6 +229,7 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
   {
     name: 'Pulp Fiction',
@@ -214,5 +253,6 @@ export const films: FilmType[] = [
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
       'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
   },
 ];
