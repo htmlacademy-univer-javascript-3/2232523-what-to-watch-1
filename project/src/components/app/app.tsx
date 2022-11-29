@@ -10,11 +10,16 @@ import PrivateRoute from '../private-route/private-route';
 import MyList from '../../pages/my-list/my-list';
 import {FilmType} from '../../types/film-type';
 
+import { useAppDispatch } from '../../hooks';
+import { fillFilms } from '../../store/action';
+
 type AppProps = {
   films : FilmType[];
 }
 
 function App({films} : AppProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  dispatch(fillFilms(films));
   return (
     <BrowserRouter>
       <Routes>
