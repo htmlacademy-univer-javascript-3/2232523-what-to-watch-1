@@ -5,6 +5,7 @@ export type AppState = {
   films: FilmType[],
   sortedFilms: FilmType[],
   currentGenre: string,
+  shownCount: number
 }
 
 export type AppDispatch = typeof store.dispatch;

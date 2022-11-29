@@ -40,11 +40,7 @@ export default function MyList(props: MyListProps) {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <div className="catalog__films-list">
-          <Catalog films={props.films.slice(1,)}></Catalog>
-        </div>
-
+        <Catalog></Catalog>
       </section>
 
       <footer className="page-footer">

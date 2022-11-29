@@ -85,15 +85,8 @@ function WelcomeScreen(props : WelcomeScreenProps): JSX.Element {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
           <GenreFilter/>
-          <div className="catalog__films-list">
-            <Catalog films={props.films.slice(1,)}></Catalog>
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <Catalog/>
         </section>
 
         <footer className="page-footer">
