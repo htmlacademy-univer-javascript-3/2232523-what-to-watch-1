@@ -13,8 +13,8 @@ const initialState: AppState = {
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, action) => {
-      state.sortedFilms = sortFilmsByGenre(state.films, state.currentGenre);
       state.currentGenre = action.payload.currentGenre;
+      state.sortedFilms = sortFilmsByGenre(state.films, state.currentGenre);
     })
     .addCase(fillFilms, (state, action) => {
       state.films = action.payload;

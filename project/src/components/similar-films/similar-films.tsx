@@ -1,7 +1,4 @@
 import { FilmType } from '../../types/film-type';
-import Catalog from '../catalog/catalog';
-
-import { useState } from 'react';
 import { sortFilmsByGenre } from '../../extra-functions/genre-functions';
 import { useAppSelector } from '../../hooks';
 import FilmCard from '../film-card/film-card';
@@ -11,11 +8,7 @@ type SimilarFilmsProps = {
 };
 
 export default function SimilarFilms(props: SimilarFilmsProps) {
-  const [highlightedFilm, setHighlightedFilm] = useState(NaN);
   const films = useAppSelector((state) => state.films);
-  /*const mouseHoverHandler = (id: number) => {
-    setHighlightedFilm(id);
-  };*/
 
   return (
     <div className="catalog__films-list">
@@ -30,6 +23,5 @@ export default function SimilarFilms(props: SimilarFilmsProps) {
           />
         ))}
     </div>
-  )
-  {/*return <Catalog films={props.films.filter((film) => film.genre === props.currentFilm.genre).filter((film) => props.currentFilmId !== film.id) />;*/}
+  );
 }

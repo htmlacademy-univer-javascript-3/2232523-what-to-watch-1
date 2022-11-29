@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
 import Catalog from '../../components/catalog/catalog';
-import { FilmType } from '../../types/film-type';
 
-type MyListProps = {
-  films: FilmType[];
-}
-
-export default function MyList(props: MyListProps) {
+export default function MyList() {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
