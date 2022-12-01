@@ -1,12 +1,27 @@
 import { FilmType } from '../../types/film-type';
-import Catalog from '../catalog/catalog';
+import { sortFilmsByGenre } from '../../extra-functions/genre-functions';
+import { useAppSelector } from '../../hooks';
+import FilmCard from '../film-card/film-card';
 
 type SimilarFilmsProps = {
   currentFilm: FilmType;
-  films: FilmType[];
-  currentFilmId: number;
 };
 
 export default function SimilarFilms(props: SimilarFilmsProps) {
-  return <Catalog films={props.films.filter((film) => film.genre === props.currentFilm.genre).filter((film) => props.currentFilmId !== film.id)} />;
+  const films = useAppSelector((state) => state.films);
+
+  return (
+    <div className="catalog__films-list">
+      {sortFilmsByGenre(films, props.currentFilm.genre)
+        .filter((film) => film.name !== props.currentFilm.name)
+        .slice(0, 4)
+        .map((film) => (
+          <FilmCard
+            key={film.id}
+            film={film}
+            posterSrc={film.posterImage}
+          />
+        ))}
+    </div>
+  );
 }

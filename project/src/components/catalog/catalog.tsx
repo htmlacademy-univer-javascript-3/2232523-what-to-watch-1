@@ -1,24 +1,25 @@
 import FilmCard from '../film-card/film-card';
-import {FilmType} from '../../types/film-type';
 import React from 'react';
-import { sortFilmsByGenre } from '../../extra-functions/genre-functions';
 import { useAppSelector } from '../../hooks';
+import ShowMoreButton from '../show-more-button/show-more-button';
 
-type CatalogProps = {
-  films: FilmType[]
-}
-
-function Catalog({ films }: CatalogProps): JSX.Element {
-  const currentGenre = useAppSelector((state) => state.currentGenre);
+function Catalog(): JSX.Element {
+  const sortedFilms = useAppSelector((state) => state.sortedFilms);
+  const shownCount = useAppSelector((state) => state.shownCount);
   return (
     <React.Fragment>
-      {sortFilmsByGenre(films, currentGenre).map((film) => (
-        <FilmCard
-          key={film.id}
-          film={film}
-          posterSrc={film.posterImage}
-        />
-      ))}
+      <div className="catalog__films-list">
+        {sortedFilms.slice(0, shownCount).map((film) => (
+          <FilmCard
+            key={film.id}
+            film={film}
+            posterSrc={film.posterImage}
+          />
+        ))}
+      </div>
+      <div className="catalog__more">
+        {shownCount < sortedFilms.length && <ShowMoreButton />}
+      </div>
     </React.Fragment>
   );
 }

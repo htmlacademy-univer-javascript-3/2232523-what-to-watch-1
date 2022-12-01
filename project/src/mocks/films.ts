@@ -77,7 +77,7 @@ export const films: FilmType[] = [
     duration: 94,
     genre: 'Adventure',
     releaseYear: 2012,
-    id: 1,
+    id: 2,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -101,7 +101,7 @@ export const films: FilmType[] = [
     duration: 92,
     genre: 'Action',
     releaseYear: 2008,
-    id: 6,
+    id: 3,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -125,7 +125,7 @@ export const films: FilmType[] = [
     duration: 94,
     genre: 'Drama',
     releaseYear: 1992,
-    id: 3,
+    id: 4,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -152,7 +152,7 @@ export const films: FilmType[] = [
     duration: 119,
     genre: 'Adventure',
     releaseYear: 2000,
-    id: 4,
+    id: 5,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -176,7 +176,7 @@ export const films: FilmType[] = [
     duration: 170,
     genre: 'Drama',
     releaseYear: 2014,
-    id: 2,
+    id: 6,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -200,7 +200,7 @@ export const films: FilmType[] = [
     duration: 138,
     genre: 'Thriller',
     releaseYear: 2010,
-    id: 5,
+    id: 7,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -224,7 +224,7 @@ export const films: FilmType[] = [
     duration: 136,
     genre: 'Adventure',
     releaseYear: 1997,
-    id: 7,
+    id: 8,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:
@@ -248,7 +248,79 @@ export const films: FilmType[] = [
     duration: 153,
     genre: 'Crime',
     releaseYear: 1994,
-    id: 8,
+    id: 9,
+    addMyList: false,
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    previewVideoLink:
+      'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
+  },
+  {
+    name: 'Moonrise Kingdom',
+    posterImage:
+      'https://10.react.pages.academy/static/film/poster/Moonrise_Kingdom.jpg',
+    previewImage:
+      'https://10.react.pages.academy/static/film/preview/moonrise-kingdom.jpg',
+    backgroundImage:
+      'https://10.react.pages.academy/static/film/background/Moonrise_Kingdom.jpg',
+    description:
+      'A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.',
+    rating: 7.9,
+    votesNumber: 222,
+    director: 'Wes Anderson',
+    actors: ['Jared Gilman', 'Kara Hayward', 'Bruce Willis'],
+    duration: 94,
+    genre: 'Adventure',
+    releaseYear: 2012,
+    id: 10,
+    addMyList: false,
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    previewVideoLink:
+      'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
+  },
+  {
+    name: 'Moonrise Kingdom',
+    posterImage:
+      'https://10.react.pages.academy/static/film/poster/Moonrise_Kingdom.jpg',
+    previewImage:
+      'https://10.react.pages.academy/static/film/preview/moonrise-kingdom.jpg',
+    backgroundImage:
+      'https://10.react.pages.academy/static/film/background/Moonrise_Kingdom.jpg',
+    description:
+      'A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.',
+    rating: 7.9,
+    votesNumber: 222,
+    director: 'Wes Anderson',
+    actors: ['Jared Gilman', 'Kara Hayward', 'Bruce Willis'],
+    duration: 94,
+    genre: 'Adventure',
+    releaseYear: 2012,
+    id: 11,
+    addMyList: false,
+    videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
+    previewVideoLink:
+      'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    reviews: []
+  },
+  {
+    name: 'Moonrise Kingdom',
+    posterImage:
+      'https://10.react.pages.academy/static/film/poster/Moonrise_Kingdom.jpg',
+    previewImage:
+      'https://10.react.pages.academy/static/film/preview/moonrise-kingdom.jpg',
+    backgroundImage:
+      'https://10.react.pages.academy/static/film/background/Moonrise_Kingdom.jpg',
+    description:
+      'A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.',
+    rating: 7.9,
+    votesNumber: 222,
+    director: 'Wes Anderson',
+    actors: ['Jared Gilman', 'Kara Hayward', 'Bruce Willis'],
+    duration: 94,
+    genre: 'Adventure',
+    releaseYear: 2012,
+    id: 12,
     addMyList: false,
     videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     previewVideoLink:

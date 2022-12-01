@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
 import Catalog from '../../components/catalog/catalog';
-import { FilmType } from '../../types/film-type';
 
-type MyListProps = {
-  films: FilmType[];
-}
-
-export default function MyList(props: MyListProps) {
+export default function MyList() {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -40,11 +35,7 @@ export default function MyList(props: MyListProps) {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        <div className="catalog__films-list">
-          <Catalog films={props.films.slice(1,)}></Catalog>
-        </div>
-
+        <Catalog></Catalog>
       </section>
 
       <footer className="page-footer">

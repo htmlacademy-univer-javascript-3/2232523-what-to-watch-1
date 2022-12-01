@@ -97,10 +97,7 @@ function Film({films}: FilmProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <SimilarFilms films={films} currentFilm={film} currentFilmId={film.id}/>
-          </div>
+          <SimilarFilms currentFilm={film}/>
         </section>
 
         <footer className="page-footer">

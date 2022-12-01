@@ -28,7 +28,6 @@ function App({films} : AppProps): JSX.Element {
           element={
             <WelcomeScreen
               mainFilm={films[0]}
-              films={films}
             />
           }
         />
@@ -50,7 +49,7 @@ function App({films} : AppProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Auth}
             >
-              <MyList films={films}/>
+              <MyList/>
             </PrivateRoute>
           }
         />
