@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { sortFilmsByGenre } from '../extra-functions/genre-functions';
 import { AppState } from '../types/app-state.type';
-import { changeGenre, fillFilms, setAuthorizationStatus as setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError } from './action';
+import { changeGenre, fillFilms, setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError } from './action';
 import { AuthorizationStatus } from '../const';
 
 const initialState: AppState = {
