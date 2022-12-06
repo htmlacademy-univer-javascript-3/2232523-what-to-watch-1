@@ -8,18 +8,23 @@ import NonExistentPage from '../../pages/non-existent-page/non-existent-page';
 import AddReview from '../../pages/add-review/add-review';
 import PrivateRoute from '../private-route/private-route';
 import MyList from '../../pages/my-list/my-list';
-import {FilmType} from '../../types/film-type';
-
-import { useAppDispatch } from '../../hooks';
-import { fillFilms } from '../../store/action';
+import Loader from '../loader/loader';
+import { useAppSelector } from '../../hooks';
+import { Review } from '../../types/film-type';
 
 type AppProps = {
-  films : FilmType[];
+  reviews : Review[];
 }
 
-function App({films} : AppProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  dispatch(fillFilms(films));
+function App({reviews} : AppProps): JSX.Element {
+  const films = useAppSelector((state) => state.films);
+  const isLoading = useAppSelector((state) => state.dataIsLoading);
+
+  if (isLoading) {
+    return (
+      <Loader />
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>
@@ -33,7 +38,7 @@ function App({films} : AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<Film films={films}/>}
+          element={<Film films={films} reviews={reviews}/>}
         />
         <Route
           path={AppRoute.Player}

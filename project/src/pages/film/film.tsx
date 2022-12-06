@@ -1,14 +1,15 @@
 import { Link, useParams, Navigate } from 'react-router-dom';
 import React from 'react';
-import {FilmType} from '../../types/film-type';
+import {FilmType, Review} from '../../types/film-type';
 import FilmDescription from '../../components/film-description/film-description';
 import SimilarFilms from '../../components/similar-films/similar-films';
 
 type FilmProps = {
   films: FilmType[];
+  reviews: Review[];
 }
 
-function Film({films}: FilmProps): JSX.Element {
+function Film({films, reviews}: FilmProps): JSX.Element {
   const id = Number(useParams().id);
   const film = films.find((currentFilm) => currentFilm.id === id);
 
@@ -51,7 +52,7 @@ function Film({films}: FilmProps): JSX.Element {
               <h2 className="film-card__title">{film.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{film.genre}</span>
-                <span className="film-card__year">{film.releaseYear}</span>
+                <span className="film-card__year">{film.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -89,7 +90,7 @@ function Film({films}: FilmProps): JSX.Element {
                 width="218" height="327"
               />
             </div>
-            <FilmDescription film={film}/>
+            <FilmDescription film={film} reviews={reviews}/>
           </div>
         </div>
       </section>
@@ -97,7 +98,10 @@ function Film({films}: FilmProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <SimilarFilms currentFilm={film}/>
+
+          <div className="catalog__films-list">
+            <SimilarFilms currentFilm={film}/>
+          </div>
         </section>
 
         <footer className="page-footer">

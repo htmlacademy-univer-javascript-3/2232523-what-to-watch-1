@@ -1,5 +1,3 @@
-import React from 'react';
-
 function SignIn(): JSX.Element {
   return (
     <div className="user-page">
