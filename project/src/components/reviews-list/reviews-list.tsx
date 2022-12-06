@@ -1,21 +1,21 @@
 import ReviewCard from '../review-card/review-card';
-import { FilmType } from '../../types/film-type';
+import { Review } from '../../types/film-type';
 
 type ReviewsListProps = {
-  film: FilmType;
+  reviews: Review[];
 };
 
 export default function ReviewsList(props: ReviewsListProps) {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {props.film.reviews.map((review) => (
+        {props.reviews.map((review) => (
           <ReviewCard
             key={review.id}
             postedDate={review.date}
-            reviewText={review.text}
+            reviewText={review.comment}
             reviewRating={review.rating}
-            reviewAuthor={review.author}
+            reviewAuthor={review.user}
           />
         ))}
       </div>

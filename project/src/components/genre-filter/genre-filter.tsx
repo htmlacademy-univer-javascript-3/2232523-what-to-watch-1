@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { getGenres } from '../../extra-functions/genre-functions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { resetShownFilms, changeGenre } from '../../store/action';

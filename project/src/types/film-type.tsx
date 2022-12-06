@@ -4,24 +4,27 @@ export type FilmType = {
     posterImage: string;
     previewImage: string;
     backgroundImage: string;
+    backgroundColor: string;
     videoLink: string;
     previewVideoLink: string;
     description: string;
     rating: number;
-    votesNumber: number;
+    scoresCount: number;
     director: string;
-    actors: string[];
-    duration: number;
+    starring: string[];
+    runTime: number;
     genre: string;
-    releaseYear: number;
-    addMyList: boolean;
-    reviews: Review[];
+    released: number;
+    isFavorite: boolean;
   };
 
 export type Review = {
   id: number,
   rating: number,
-  author: string,
+  user: {
+    id: number
+    name: string
+  }
   date: string,
-  text: string
+  comment: string
 };

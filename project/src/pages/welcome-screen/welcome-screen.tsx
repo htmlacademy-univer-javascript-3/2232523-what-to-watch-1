@@ -51,7 +51,7 @@ function WelcomeScreen(props : WelcomeScreenProps): JSX.Element {
               <h2 className="film-card__title">{props.mainFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{props.mainFilm.genre}</span>
-                <span className="film-card__year">{props.mainFilm.releaseYear}</span>
+                <span className="film-card__year">{props.mainFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">

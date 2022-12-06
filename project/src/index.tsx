@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import { films } from './mocks/films';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { fetchFilms } from './store/api-actions';
 
+store.dispatch(fetchFilms());
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
+store.dispatch(fetchFilms());
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App films={films}/>
+      <App reviews={[]}/>
     </Provider>
   </React.StrictMode>,
 );

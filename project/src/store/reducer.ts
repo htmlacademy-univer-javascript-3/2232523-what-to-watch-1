@@ -1,13 +1,17 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { sortFilmsByGenre } from '../extra-functions/genre-functions';
 import { AppState } from '../types/app-state.type';
-import { changeGenre, fillFilms, resetShownFilms, showMoreFilms } from './action';
+import { changeGenre, fillFilms, setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError } from './action';
+import { AuthorizationStatus } from '../const';
 
 const initialState: AppState = {
   films: [],
   sortedFilms: [],
   currentGenre: 'All genres',
-  shownCount: 0
+  shownCount: 0,
+  dataIsLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -26,6 +30,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(resetShownFilms, (state) => {
       state.shownCount = Math.min(state.sortedFilms.length, 8);
+    })
+    .addCase(setDataIsLoading, (state, action) => {
+      state.dataIsLoading = action.payload;
+    })
+    .addCase(setAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 
