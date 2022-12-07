@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { sortFilmsByGenre } from '../extra-functions/genre-functions';
 import { AppState } from '../types/app-state.type';
-import { changeGenre, fillFilms, setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError } from './action';
+import { changeGenre, fillFilms, setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError, saveUser } from './action';
 import { AuthorizationStatus } from '../const';
 
 const initialState: AppState = {
@@ -12,6 +12,7 @@ const initialState: AppState = {
   dataIsLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
+  userDate: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -36,6 +37,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(saveUser, (state, action) => {
+      state.userDate = action.payload;
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
