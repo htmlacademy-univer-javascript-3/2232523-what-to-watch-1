@@ -3,6 +3,7 @@ import React from 'react';
 import { FilmType } from '../../types/film-type';
 import { Link } from 'react-router-dom';
 import GenreFilter from '../../components/genre-filter/genre-filter';
+import User from '../../components/user/user';
 
 type WelcomeScreenProps = {
   mainFilm : FilmType;
@@ -26,17 +27,7 @@ function WelcomeScreen(props : WelcomeScreenProps): JSX.Element {
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link" href="/">Sign out</a>
-            </li>
-          </ul>
+          <User/>
         </header>
 
         <div className="film-card__wrap">

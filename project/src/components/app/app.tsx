@@ -1,6 +1,6 @@
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import Film from '../../pages/film/film';
 import Player from '../../pages/player/player';
 import SignIn from '../../pages/sign-in/sign-in';
@@ -51,9 +51,7 @@ function App({reviews} : AppProps): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <MyList/>
             </PrivateRoute>
           }

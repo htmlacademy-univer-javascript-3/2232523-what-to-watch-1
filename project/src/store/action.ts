@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { FilmType } from '../types/film-type';
 import { AuthorizationStatus } from '../const';
+import {UserData} from '../types/user-data';
 
 export const Action = {
   CHANGE_GENRE: 'changeGenre',
@@ -9,7 +10,8 @@ export const Action = {
   FILL_FILMS: 'fillFilms',
   APP_SET_ERROR: 'app/setError',
   SET_AUTH_STATUS: 'setAuthStatus',
-  SET_DATA_IS_LOADING: 'setDataIsLoading'
+  SET_DATA_IS_LOADING: 'setDataIsLoading',
+  SAVE_USER: 'saveUser'
 };
 
 export const changeGenre = createAction<{currentGenre: string}>(Action.CHANGE_GENRE);
@@ -19,3 +21,4 @@ export const fillFilms = createAction<FilmType[]>(Action.FILL_FILMS);
 export const setError = createAction<string | null>(Action.APP_SET_ERROR);
 export const setAuthorizationStatus = createAction<AuthorizationStatus>(Action.SET_AUTH_STATUS);
 export const setDataIsLoading = createAction<boolean>(Action.SET_DATA_IS_LOADING);
+export const saveUser = createAction<UserData>(Action.SAVE_USER);

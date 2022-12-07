@@ -7,7 +7,7 @@ type SimilarFilmsProps = {
   currentFilm: FilmType;
 };
 
-export default function SimilarFilms(props: SimilarFilmsProps) {
+function SimilarFilms(props: SimilarFilmsProps) {
   const films = useAppSelector((state) => state.films);
 
   return (
@@ -25,3 +25,5 @@ export default function SimilarFilms(props: SimilarFilmsProps) {
     </div>
   );
 }
+
+export default SimilarFilms;
