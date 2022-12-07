@@ -30,15 +30,11 @@ function App({reviews} : AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={
-            <WelcomeScreen
-              mainFilm={films[0]}
-            />
-          }
+          element={<WelcomeScreen mainFilm={films[0]}/>}
         />
         <Route
           path={AppRoute.Film}
-          element={<Film films={films} reviews={reviews}/>}
+          element={<Film films={films}/>}
         />
         <Route
           path={AppRoute.Player}
