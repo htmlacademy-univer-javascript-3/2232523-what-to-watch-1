@@ -1,6 +1,4 @@
 import { FilmType } from '../../types/film-type';
-import { sortFilmsByGenre } from '../../extra-functions/genre-functions';
-import { useAppSelector } from '../../hooks';
 import FilmCard from '../film-card/film-card';
 
 type SimilarFilmsProps = {
@@ -9,8 +7,6 @@ type SimilarFilmsProps = {
 };
 
 function SimilarFilms(props: SimilarFilmsProps) {
-  const films = useAppSelector((state) => state.films);
-
   return (
     <div className="catalog__films-list">
       {props.similarFilms
