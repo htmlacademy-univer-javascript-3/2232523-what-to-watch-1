@@ -32,10 +32,10 @@ function AddReview({film} : AddReviewProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{film.name}</a>
+                <Link to={`/films/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link to={`/films/${film.id}/review`} className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>
@@ -50,9 +50,7 @@ function AddReview({film} : AddReviewProps): JSX.Element {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
-          <ReviewForm/>
-        </form>
+        <ReviewForm/>
       </div>
     </section>
   );

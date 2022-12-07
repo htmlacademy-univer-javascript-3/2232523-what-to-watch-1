@@ -1,11 +1,24 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { postReview } from '../../store/api-actions';
 
 export default function ReviewForm() {
-  const [, setStarRating] = useState('10');
+  const id = Number(useParams().id).toString();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const [starRating, setStarRating] = useState('10');
   const [reviewContent, setReviewContent] = useState('');
 
+  const reviewSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    dispatch(postReview({filmId: id, rating: parseInt(starRating, 10), comment: reviewContent}));
+    navigate(`/films/${id}`);
+  };
+
   return (
-    <form action="#" className="add-review__form">
+    <form action="#" className="add-review__form" onSubmit={reviewSubmitHandler}>
       <div className="rating" >
         <div className="rating__stars">
           {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((rating) => (

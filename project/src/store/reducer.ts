@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { sortFilmsByGenre } from '../extra-functions/genre-functions';
 import { AppState } from '../types/app-state.type';
-import { changeGenre, fillFilms, setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError, saveUser } from './action';
+import { changeGenre, fillFilms, setAuthorizationStatus, resetShownFilms, setDataIsLoading, showMoreFilms, setError, saveUser, loadFilm, loadComments, loadSimilar } from './action';
 import { AuthorizationStatus } from '../const';
 
 const initialState: AppState = {
@@ -12,7 +12,10 @@ const initialState: AppState = {
   dataIsLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
-  userDate: null
+  userDate: null,
+  comments: [],
+  similar: [],
+  film: null
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -43,6 +46,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(loadFilm, (state, action) => {
+      state.film = action.payload;
+    })
+    .addCase(loadComments, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(loadSimilar, (state, action) => {
+      state.similar = action.payload;
     });
 });
 
