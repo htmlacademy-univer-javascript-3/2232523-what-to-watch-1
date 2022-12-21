@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { postReview } from '../../store/api-actions';
@@ -10,6 +10,15 @@ export default function ReviewForm() {
 
   const [starRating, setStarRating] = useState('10');
   const [reviewContent, setReviewContent] = useState('');
+
+  const updateRating = useCallback(
+    (starR: string) => setStarRating(starR),
+    [starRating]
+  );
+  const updateReview = useCallback(
+    (reviewC: string) => setReviewContent(reviewC),
+    []
+  );
 
   const reviewSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -30,7 +39,7 @@ export default function ReviewForm() {
                 name="rating"
                 value={rating.toString()}
                 onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-                  setStarRating(evt.target.value);
+                  updateRating(evt.target.value);
                 }}
               />
               <label className="rating__label" htmlFor={`star-${rating}`}>
@@ -48,7 +57,7 @@ export default function ReviewForm() {
           placeholder={'Review Text'}
           value={reviewContent}
           onChange={(evt: ChangeEvent<HTMLTextAreaElement>) => {
-            setReviewContent(evt.target.value);
+            updateReview(evt.target.value);
           }}
         >
         </textarea>
