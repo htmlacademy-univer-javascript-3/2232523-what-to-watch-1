@@ -20,7 +20,7 @@ function SignIn(): JSX.Element {
   };
 
   const rePassword = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
-  const reEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const reEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   const submitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

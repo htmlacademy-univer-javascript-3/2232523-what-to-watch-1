@@ -18,7 +18,6 @@ type FilmProps = {
 
 function Film({films}: FilmProps): JSX.Element {
   const id = Number(useParams().id);
-  const stringId = id.toString();
   const film = films.find((currentFilm) => currentFilm.id === id);
   const reviews = useAppSelector((state) => state[Reducer.FILM_REDUCER].reviews);
   const similarFilms = useAppSelector((state) => state[Reducer.FILM_REDUCER].similarFilms);
@@ -27,6 +26,7 @@ function Film({films}: FilmProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const stringId = id.toString();
     dispatch(fetchFilmByID(stringId));
     dispatch(fetchSimilarByID(stringId));
     dispatch(fetchReviewsByID(stringId));
