@@ -1,20 +1,18 @@
-import Catalog from '../../components/catalog/catalog';
 import React from 'react';
-import { FilmType } from '../../types/film-type';
 import { Link } from 'react-router-dom';
-import GenreFilter from '../../components/genre-filter/genre-filter';
+import { Reducer } from '../../const';
+import { useAppSelector } from '../../hooks';
 import User from '../../components/user/user';
+import Catalog from '../../components/catalog/catalog';
+import GenreFilter from '../../components/genre-filter/genre-filter';
 
-type WelcomeScreenProps = {
-  mainFilm : FilmType;
-}
-
-function WelcomeScreen(props : WelcomeScreenProps): JSX.Element {
+function WelcomeScreen(): JSX.Element {
+  const promo = useAppSelector((state) => state[Reducer.MAIN_REDUCER].promo);
   return (
     <React.Fragment>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={props.mainFilm.backgroundImage} alt={props.mainFilm.name}/>
+          <img src={promo?.backgroundImage} alt={promo?.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -33,21 +31,21 @@ function WelcomeScreen(props : WelcomeScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={props.mainFilm.posterImage} alt={`${props.mainFilm.name} poster`}
+              <img src={promo?.posterImage} alt={`${promo?.name} poster`}
                 width="218" height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.mainFilm.name}</h2>
+              <h2 className="film-card__title">{promo?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.mainFilm.genre}</span>
-                <span className="film-card__year">{props.mainFilm.released}</span>
+                <span className="film-card__genre">{promo?.genre}</span>
+                <span className="film-card__year">{promo?.released}</span>
               </p>
 
               <div className="film-card__buttons">
                 <Link
-                  to={`/player/${props.mainFilm.id}`}
+                  to={`/player/${promo?.id}`}
                   className="btn btn--play film-card__button"
                   type="button"
                 >

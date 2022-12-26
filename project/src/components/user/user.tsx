@@ -1,12 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useAppSelector, useAppDispatch} from '../../hooks';
-import {AuthorizationStatus} from '../../const';
-import {logOut} from '../../store/api-actions';
+import { Reducer } from '../../const';
+import { logOut } from '../../store/api-actions';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthorizationStatus, AppRoute } from '../../const';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 
 function User(): JSX.Element {
-  const {userDate, authorizationStatus} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const avatar = useAppSelector((state) => state[Reducer.USER_REDUCER].avatar);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
 
   const signOutClickHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -26,7 +29,7 @@ function User(): JSX.Element {
     <ul className="user-block">
       <li className="user-block__item">
         <div className="user-block__avatar">
-          <img src={userDate?.avatarUrl} alt="User avatar" width="63" height="63"/>
+          <img src={avatar || ''} alt="User avatar" width="63" height="63" onClick={() => navigate(AppRoute.MyList)}/>
         </div>
       </li>
       <li className="user-block__item">

@@ -1,3 +1,4 @@
+import { convertDateShort, convertDateLong } from '../../extra-functions/convert-date-functions';
 type ReviewCardProps = {
   postedDate: string;
   reviewText: string;
@@ -15,8 +16,8 @@ export default function ReviewCard(props: ReviewCardProps) {
 
         <footer className="review__details">
           <cite className="review__author">{props.reviewAuthor.name}</cite>
-          <time className="review__date" dateTime={props.postedDate}>
-            {props.postedDate}
+          <time className="review__date" dateTime={convertDateShort(props.postedDate)}>
+            {convertDateLong(props.postedDate)}
           </time>
         </footer>
       </blockquote>

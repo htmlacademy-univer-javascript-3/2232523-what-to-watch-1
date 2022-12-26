@@ -1,23 +1,5 @@
 import {Fragment} from 'react';
-
-function getRating(rating: number): string {
-  if (rating >= 0 && rating < 3) {
-    return 'Bad';
-  }
-  if (rating < 5) {
-    return 'Normal';
-  }
-  if (rating < 8) {
-    return 'Good';
-  }
-  if (rating < 10) {
-    return 'Very good';
-  }
-  if (rating === 10) {
-    return 'Awesome';
-  }
-  return 'None';
-}
+import { getRating } from '../../extra-functions/get-rating-function';
 
 type OverviewProps = {
   rating: number,

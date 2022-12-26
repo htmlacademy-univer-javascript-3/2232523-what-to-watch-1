@@ -18,7 +18,14 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
-  Similar = '/similar'
+  Similar = '/similar',
+  Promo = '/promo'
+}
+
+export enum Reducer {
+  USER_REDUCER = 'USER_REDUCER',
+  MAIN_REDUCER = 'MAIN_REDUCER',
+  FILM_REDUCER = 'FILM_REDUCER'
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

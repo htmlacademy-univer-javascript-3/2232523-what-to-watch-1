@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { fetchFilms, checkAuth } from './store/api-actions';
+import { fetchFilms, checkAuth, fetchPromoFilm } from './store/api-actions';
 import Error from './components/error/error';
 
 store.dispatch(fetchFilms());
@@ -13,12 +13,13 @@ const root = ReactDOM.createRoot(
 
 store.dispatch(checkAuth());
 store.dispatch(fetchFilms());
+store.dispatch(fetchPromoFilm());
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Error/>
-      <App reviews={[]}/>
+      <Error />
+      <App />
     </Provider>
   </React.StrictMode>,
 );

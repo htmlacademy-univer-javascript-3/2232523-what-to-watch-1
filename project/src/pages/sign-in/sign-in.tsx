@@ -1,36 +1,41 @@
 import { useNavigate, Link } from 'react-router-dom';
-import {useRef, FormEvent} from 'react';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import { FormEvent, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { logIn } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
+import { Reducer } from '../../const';
 
 function SignIn(): JSX.Element {
+  const [emailField, setEmailField] = useState<string>('');
+  const [passwordField, setPasswordField] = useState<string>('');
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { authorizationStatus } = useAppSelector((state) => state);
-  if (authorizationStatus === AuthorizationStatus.Auth){
-    navigate(AppRoute.Main);
-  }
-
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
 
   const onSubmit = (authData: AuthData) => {
     dispatch(logIn(authData));
   };
 
+  const rePassword = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
+  const reEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
   const submitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (emailRef.current !== null && passwordRef.current !== null) {
+    if (emailField !== null && passwordField !== null && rePassword.test(passwordField) && reEmail.test(emailField)) {
       onSubmit({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
+        email: emailField,
+        password: passwordField,
       });
     }
   };
+
+  if (authorizationStatus === AuthorizationStatus.Auth){
+    navigate(AppRoute.Main);
+  }
 
   return (
     <div className="user-page">
@@ -50,11 +55,11 @@ function SignIn(): JSX.Element {
         <form action="#" className="sign-in__form" onSubmit={submitHandler}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={emailRef}/>
+              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" value={emailField} onChange={(event) => setEmailField(event.target.value)}/>
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"id="user-password" ref={passwordRef}/>
+              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"id="user-password" value={passwordField} onChange={(event) => setPasswordField(event.target.value)}/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
