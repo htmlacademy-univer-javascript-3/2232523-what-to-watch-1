@@ -22,10 +22,10 @@ export enum APIRoute {
   Promo = '/promo'
 }
 
-export enum ReducerType {
-  User = 'userReducer',
-  Main = 'mainReducer',
-  Film = 'filmReducer'
+export enum Reducer {
+  USER_REDUCER = 'USER_REDUCER',
+  MAIN_REDUCER = 'MAIN_REDUCER',
+  FILM_REDUCER = 'FILM_REDUCER'
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

@@ -1,14 +1,13 @@
+import { setError } from './action';
 import { AxiosInstance } from 'axios';
+import { Review } from '../types/film-type';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { FilmType } from '../types/film-type';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { dropToken, saveToken } from '../services/token';
-import { AppDispatch, AppState, State } from '../types/app-state.type';
-import { Review } from '../types/film-type';
 import { UserComment } from '../types/user-review';
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { fillFilms, setDataIsLoading, setAuthorizationStatus, setError, saveUser, loadComments, loadFilm, loadSimilar } from './action';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
+import { AppDispatch, State } from '../types/app-state.type';
 
 export const fetchFilms = createAsyncThunk<FilmType[], undefined, {
   state: State;
@@ -27,7 +26,7 @@ export const checkAuth = createAsyncThunk<UserData, undefined, {
   extra: AxiosInstance
 }>(
   'checkAuth',
-  async (_arg, { dispatch, extra: api }) => {
+  async (_arg, { extra: api }) => {
     const { data } = await api.get(APIRoute.Login);
     return data;
   }
@@ -65,7 +64,7 @@ export const logOut = createAsyncThunk<void, undefined, {
   extra: AxiosInstance
 }>(
   'logout',
-  async (_arg, { dispatch, extra: api }) => {
+  async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
   }
 );
@@ -124,18 +123,16 @@ export const postReview = createAsyncThunk<
   UserComment,
   {
     dispatch: AppDispatch;
-    state: AppState;
+    state: State;
     extra: AxiosInstance;
   }
 >(
   'data/postReviewById',
-  async ({ comment, rating, filmId }, { dispatch, extra: api }) => {
-    dispatch(setDataIsLoading(true));
+  async ({ comment, rating, filmId }, { extra: api }) => {
     await api.post<UserComment>(`${APIRoute.Comments}/${filmId}`, {
       comment,
       rating,
     });
-    dispatch(setDataIsLoading(false));
   }
 );
 

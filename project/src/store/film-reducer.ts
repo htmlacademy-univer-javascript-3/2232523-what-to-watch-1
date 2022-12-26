@@ -1,17 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { sortFilmsByGenre } from '../extra-functions/genre-functions';
 import { FilmState } from '../types/app-state.type';
-import { changeGenre, loadSimilar, resetShownFilms, showMoreFilms } from '../store/action';
-import { fetchReviewsByID, fetchFilmByID, fetchSimilarByID, postReview } from '../store/api-actions.js';
+import { fetchReviewsByID, fetchFilmByID, fetchSimilarByID } from '../store/api-actions';
 
 const initialState: FilmState = {
   film: null,
-  comments: [],
-  similar: []
+  reviews: [],
+  similarFilms: []
 };
 
 export const filmReducer = createSlice({
-  name: 'filmReducer',
+  name: 'FILM_REDUCER',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -20,10 +18,10 @@ export const filmReducer = createSlice({
         state.film = action.payload;
       })
       .addCase(fetchReviewsByID.fulfilled, (state, action) => {
-        state.comments = action.payload;
+        state.reviews = action.payload;
       })
       .addCase(fetchSimilarByID.fulfilled, (state, action) => {
-        state.similar = action.payload;
+        state.similarFilms = action.payload;
       });
   },
 });

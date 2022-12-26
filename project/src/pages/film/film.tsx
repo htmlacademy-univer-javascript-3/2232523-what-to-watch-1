@@ -1,16 +1,16 @@
-import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import React from 'react';
-import { FilmType } from '../../types/film-type';
-import FilmDescription from '../../components/film-description/film-description';
-import SimilarFilms from '../../components/similar-films/similar-films';
-import User from '../../components/user/user';
+import { useEffect } from 'react';
 import { AppRoute } from '../../const';
+import { Reducer } from '../../const';
+import User from '../../components/user/user';
+import { FilmType } from '../../types/film-type';
+import { AuthorizationStatus } from '../../const';
+import { Link, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import NonExistentPage from '../non-existent-page/non-existent-page';
-import { AuthorizationStatus } from '../../const';
+import SimilarFilms from '../../components/similar-films/similar-films';
+import FilmDescription from '../../components/film-description/film-description';
 import { fetchReviewsByID, fetchFilmByID, fetchSimilarByID } from '../../store/api-actions';
-import { setDataIsLoading } from '../../store/action';
 
 type FilmProps = {
   films: FilmType[];
@@ -18,19 +18,18 @@ type FilmProps = {
 
 function Film({films}: FilmProps): JSX.Element {
   const id = Number(useParams().id);
+  const stringId = id.toString();
   const film = films.find((currentFilm) => currentFilm.id === id);
-  const similar = useAppSelector((state) => state.similar);
-  const reviews = useAppSelector((state) => state.comments);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const reviews = useAppSelector((state) => state[Reducer.FILM_REDUCER].reviews);
+  const similarFilms = useAppSelector((state) => state[Reducer.FILM_REDUCER].similarFilms);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
 
   const dispatch = useAppDispatch();
-  //
+
   useEffect(() => {
-    dispatch(setDataIsLoading(true));
-    dispatch(fetchFilmByID(id.toString()));
-    dispatch(fetchSimilarByID(id.toString()));
-    dispatch(fetchReviewsByID(id.toString()));
-    dispatch(setDataIsLoading(false));
+    dispatch(fetchFilmByID(stringId));
+    dispatch(fetchSimilarByID(stringId));
+    dispatch(fetchReviewsByID(stringId));
   }, [id, dispatch]);
 
   if (!film) {
@@ -117,7 +116,7 @@ function Film({films}: FilmProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            <SimilarFilms currentFilm={film} similarFilms={similar}/>
+            <SimilarFilms currentFilm={film} similarFilms={similarFilms}/>
           </div>
         </section>
 

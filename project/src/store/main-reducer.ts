@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TIMEOUT_SHOW_ERROR } from '../const';
 import { sortFilmsByGenre } from '../extra-functions/genre-functions';
 import { AppState } from '../types/app-state.type';
-import { AuthorizationStatus } from '../const';
-import { changeGenre, resetShownFilms, setDataIsLoading, setError, showMoreFilms, loadPromo, fillFilms } from './action';
-import { clearError, fetchFilmByID, fetchFilms, fetchPromoFilm } from '../store/api-actions.js';
+import { changeGenre, resetShownFilms, setError, showMoreFilms} from './action';
+import { fetchFilms, fetchPromoFilm } from '../store/api-actions';
 
 const initialState: AppState = {
   films: [],
@@ -17,7 +15,7 @@ const initialState: AppState = {
 };
 
 export const mainReducer = createSlice({
-  name: 'mainReducer',
+  name: 'MAIN_REDUCER',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

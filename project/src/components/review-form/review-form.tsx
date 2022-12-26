@@ -8,21 +8,37 @@ export default function ReviewForm() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [starRating, setStarRating] = useState('10');
+  const [starRating, setStarRating] = useState(NaN);
   const [reviewContent, setReviewContent] = useState('');
+  const [isReviewError, setIsReviewError] = useState(true);
+  const [isRatingError, setIsRatingError] = useState(true);
 
   const updateRating = useCallback(
-    (starR: string) => setStarRating(starR),
-    [starRating]
+    (evt: ChangeEvent<HTMLInputElement>, starR: string) => {
+      setStarRating(parseInt(starR, 10));
+      if (evt.target.value) {
+        setIsRatingError(false);
+      } else {
+        setIsRatingError(true);
+      }
+    },
+    []
   );
   const updateReview = useCallback(
-    (reviewC: string) => setReviewContent(reviewC),
+    (evt: ChangeEvent<HTMLTextAreaElement>, reviewC: string) => {
+      setReviewContent(reviewC);
+      if (evt.target.value.length >= 50 && evt.target.value.length <= 400) {
+        setIsReviewError(false);
+      } else {
+        setIsReviewError(true);
+      }
+    },
     []
   );
 
   const reviewSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(postReview({filmId: id, rating: parseInt(starRating, 10), comment: reviewContent}));
+    dispatch(postReview({comment: reviewContent, rating: starRating, filmId: id}));
     navigate(`/films/${id}`);
   };
 
@@ -39,7 +55,7 @@ export default function ReviewForm() {
                 name="rating"
                 value={rating.toString()}
                 onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-                  updateRating(evt.target.value);
+                  updateRating(evt, evt.target.value);
                 }}
               />
               <label className="rating__label" htmlFor={`star-${rating}`}>
@@ -57,12 +73,12 @@ export default function ReviewForm() {
           placeholder={'Review Text'}
           value={reviewContent}
           onChange={(evt: ChangeEvent<HTMLTextAreaElement>) => {
-            updateReview(evt.target.value);
+            updateReview(evt, evt.target.value);
           }}
         >
         </textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">
+          <button className="add-review__btn" type="submit" disabled={isReviewError || isRatingError}>
             Post
           </button>
         </div>

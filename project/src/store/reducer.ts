@@ -1,13 +1,14 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { userReducer } from './auth-process-reducer';
+import { userReducer } from './user-reducer';
 import { filmReducer } from './film-reducer';
 import { mainReducer } from './main-reducer';
+import { Reducer } from '../const';
 
 
 const rootReducer = combineReducers({
-  filmReducer: filmReducer.reducer,
-  mainReducer: mainReducer.reducer,
-  userReducer: userReducer.reducer
+  [Reducer.FILM_REDUCER]: filmReducer.reducer,
+  [Reducer.MAIN_REDUCER]: mainReducer.reducer,
+  [Reducer.USER_REDUCER]: userReducer.reducer
 });
 
 export { rootReducer };
