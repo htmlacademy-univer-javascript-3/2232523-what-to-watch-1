@@ -17,7 +17,8 @@ export const Action = {
   LOAD_COMMENTS: 'loadComments',
   LOAD_SIMILAR: 'loadSimilar',
   SET_AVATAR: 'setAvatar',
-  LOAD_PROMO: 'loadPromo'
+  LOAD_PROMO: 'loadPromo',
+  SET_FAVORITE_COUNT: 'setFavoriteCount'
 };
 
 export const changeGenre = createAction<{currentGenre: string}>(Action.CHANGE_GENRE);
@@ -33,3 +34,4 @@ export const loadComments = createAction<Review[]>(Action.LOAD_COMMENTS);
 export const loadSimilar = createAction<FilmType[]>(Action.LOAD_SIMILAR);
 export const setAvatar = createAction<string | null>(Action.SET_AVATAR);
 export const loadPromo = createAction<FilmType>(Action.LOAD_PROMO);
+export const setFavoriteCount = createAction<number>(Action.SET_FAVORITE_COUNT);

@@ -19,13 +19,21 @@ export enum APIRoute {
   Logout = '/logout',
   Comments = '/comments',
   Similar = '/similar',
-  Promo = '/promo'
+  Promo = '/promo',
+  Favorite = '/favorite',
 }
 
 export enum Reducer {
   USER_REDUCER = 'USER_REDUCER',
   MAIN_REDUCER = 'MAIN_REDUCER',
   FILM_REDUCER = 'FILM_REDUCER'
+}
+
+export enum LogInState {
+  NoError,
+  NotValidEmail,
+  NotValidPassword,
+  NotValidEmailAndPassword
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;

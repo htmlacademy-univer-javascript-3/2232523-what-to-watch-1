@@ -1,18 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Reducer } from '../const';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../const';
+import { LogInState } from '../const';
 import { UserState } from '../types/app-state.type.js';
-import { dropToken, saveToken } from '../services/token';
-import { checkAuth, logIn, logOut, } from './api-actions';
+import { dropToken } from '../services/token';
+import { getAuthStatus, logIn, logOut } from './api-actions';
 
 const initialState: UserState = {
   authorizationStatus: AuthorizationStatus.NoAuth,
   avatar: null,
+  loginState: LogInState.NoError
 };
 
 export const userReducer = createSlice({
-  name: 'USER_REDUCER',
+  name: Reducer.USER_REDUCER,
   initialState,
-  reducers: {},
+  reducers: {
+    setLoginState: (state, action: PayloadAction<LogInState>) => {
+      state.loginState = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(logOut.fulfilled, (state) => {
@@ -21,16 +28,18 @@ export const userReducer = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        saveToken(action.payload.token);
+        state.avatar = action.payload.avatarUrl;
+        state.authorizationStatus = AuthorizationStatus.Auth;
+        state.loginState = LogInState.NoError;
+      })
+      .addCase(getAuthStatus.fulfilled, (state, action) => {
         state.avatar = action.payload.avatarUrl;
         state.authorizationStatus = AuthorizationStatus.Auth;
       })
-      .addCase(checkAuth.fulfilled, (state, action) => {
-        state.avatar = action.payload.avatarUrl;
-        state.authorizationStatus = AuthorizationStatus.Auth;
-      })
-      .addCase(checkAuth.rejected, (state) => {
+      .addCase(getAuthStatus.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       });
   },
 });
+
+export const {setLoginState} = userReducer.actions;

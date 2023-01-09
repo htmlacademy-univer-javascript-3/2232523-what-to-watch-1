@@ -13,7 +13,6 @@ import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import NonExistentPage from '../../pages/non-existent-page/non-existent-page';
 
 function App(): JSX.Element {
-  const films = useAppSelector((state) => state[Reducer.MAIN_REDUCER].films);
   const isLoading = useAppSelector((state) => state[Reducer.MAIN_REDUCER].dataIsLoading);
 
   if (isLoading) {
@@ -31,11 +30,11 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<Film films={films}/>}
+          element={<Film/>}
         />
         <Route
           path={AppRoute.Player}
-          element={<Player films={films}/>}
+          element={<Player />}
         />
         <Route
           path={AppRoute.SignIn}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAppDispatch } from '../../hooks';
 import { showMoreFilms } from '../../store/action';
 

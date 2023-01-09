@@ -1,10 +1,11 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useMemo, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { logIn } from '../../store/api-actions';
-import { AuthData } from '../../types/auth-data';
 import { Reducer } from '../../const';
+import { LogInState } from '../../const';
+import { setLoginState } from '../../store/user-reducer';
 
 function SignIn(): JSX.Element {
   const [emailField, setEmailField] = useState<string>('');
@@ -14,24 +15,44 @@ function SignIn(): JSX.Element {
   const navigate = useNavigate();
 
   const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
+  const loginState = useAppSelector((state) => state[Reducer.USER_REDUCER].loginState);
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(logIn(authData));
-  };
-
-  const rePassword = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
-  const reEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const formRef = useRef(null);
 
   const submitHandler = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+    const rePassword = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/;
+    const reEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-    if (emailField !== null && passwordField !== null && rePassword.test(passwordField) && reEmail.test(emailField)) {
-      onSubmit({
-        email: emailField,
-        password: passwordField,
-      });
+    const isEmailCorrect = () => emailField === null || !reEmail.test(emailField);
+    const isPasswordCorrect = () => passwordField === null || !rePassword.test(passwordField);
+
+    evt.preventDefault();
+    if (formRef.current) {
+      if (isEmailCorrect() && isPasswordCorrect()) {
+        dispatch(setLoginState(LogInState.NotValidEmailAndPassword));
+      } else if (isEmailCorrect()) {
+        dispatch(setLoginState(LogInState.NotValidEmail));
+      } else if (isPasswordCorrect()) {
+        dispatch(setLoginState(LogInState.NotValidPassword));
+      } else {
+        dispatch(logIn({email: emailField, password: passwordField}));
+      }
     }
   };
+
+  const showErrMessage = (logInState: LogInState) => {
+    switch (logInState) {
+      case LogInState.NotValidEmail:
+        return (<p>Email не корректный</p>);
+      case LogInState.NotValidPassword:
+        return (<p>Пароль не корректный: он должен содержать как минимум 1 цифру и 1 букву</p>);
+      case LogInState.NotValidEmailAndPassword:
+        return (<p>Email и пароль не корректные</p>);
+      default:
+        return null;
+    }
+  };
+  const errorMessage = useMemo(() => showErrMessage(loginState), [loginState]);
 
   if (authorizationStatus === AuthorizationStatus.Auth){
     navigate(AppRoute.Main);
@@ -52,7 +73,10 @@ function SignIn(): JSX.Element {
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={submitHandler}>
+        <form action="#" className="sign-in__form" ref={formRef} onSubmit={submitHandler}>
+          <div className="sign-in__message">
+            {errorMessage}
+          </div>
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" value={emailField} onChange={(event) => setEmailField(event.target.value)}/>
