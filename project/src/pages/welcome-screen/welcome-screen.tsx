@@ -1,13 +1,35 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Reducer } from '../../const';
-import { useAppSelector } from '../../hooks';
 import User from '../../components/user/user';
+import { setFavoriteCount } from '../../store/action';
 import Catalog from '../../components/catalog/catalog';
+import { Reducer, AuthorizationStatus } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import GenreFilter from '../../components/genre-filter/genre-filter';
+import { fetchFavoriteFilms, changePromoFavoriteStatus } from '../../store/api-actions';
 
 function WelcomeScreen(): JSX.Element {
   const promo = useAppSelector((state) => state[Reducer.MAIN_REDUCER].promo);
+  const favCount = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteCount);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
+  const dispatch = useAppDispatch();
+
+  const addHandler = () => {
+    dispatch(changePromoFavoriteStatus({filmId: promo?.id || NaN, status: +(!promo?.isFavorite)}));
+    if (promo?.isFavorite) {
+      dispatch(setFavoriteCount(favCount - 1));
+    } else {
+      dispatch(setFavoriteCount(favCount + 1));
+    }
+  };
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilms());
+    }
+  }, [authorizationStatus, dispatch]);
+
   return (
     <React.Fragment>
       <section className="film-card">
@@ -54,16 +76,24 @@ function WelcomeScreen(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link
-                  to={'/mylist'}
-                  className="btn btn--list film-card__button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </Link>
+                {authorizationStatus === AuthorizationStatus.Auth && (
+                  <button
+                    className="btn btn--list film-card__button"
+                    onClick={addHandler}
+                  >
+                    {promo?.isFavorite ? (
+                      <svg viewBox="0 0 18 14" width="19" height="14">
+                        <use xlinkHref="#in-list"/>
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"/>
+                      </svg>
+                    )}
+                    <span>My list</span>
+                    <span className="film-card__count">{favCount}</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>

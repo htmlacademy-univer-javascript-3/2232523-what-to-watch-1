@@ -1,36 +1,44 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { AppRoute } from '../../const';
-import { Reducer } from '../../const';
 import User from '../../components/user/user';
-import { FilmType } from '../../types/film-type';
-import { AuthorizationStatus } from '../../const';
 import { Link, useParams } from 'react-router-dom';
+import { setFavoriteCount } from '../../store/action';
+import { Reducer, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import NonExistentPage from '../non-existent-page/non-existent-page';
 import SimilarFilms from '../../components/similar-films/similar-films';
 import FilmDescription from '../../components/film-description/film-description';
-import { fetchReviewsByID, fetchFilmByID, fetchSimilarByID } from '../../store/api-actions';
+import { fetchCommentsByID, fetchFilmByID, fetchSimilarByID, fetchFavoriteFilms, changeFilmFavoriteStatus } from '../../store/api-actions';
 
-type FilmProps = {
-  films: FilmType[];
-}
-
-function Film({films}: FilmProps): JSX.Element {
+function Film(): JSX.Element {
   const id = Number(useParams().id);
-  const film = films.find((currentFilm) => currentFilm.id === id);
+  const film = useAppSelector((state) => state[Reducer.FILM_REDUCER].film);
   const reviews = useAppSelector((state) => state[Reducer.FILM_REDUCER].reviews);
   const similarFilms = useAppSelector((state) => state[Reducer.FILM_REDUCER].similarFilms);
   const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
+  const favCount = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteCount);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const stringId = id.toString();
-    dispatch(fetchFilmByID(stringId));
-    dispatch(fetchSimilarByID(stringId));
-    dispatch(fetchReviewsByID(stringId));
-  }, [id, dispatch]);
+    const sId = id.toString();
+    dispatch(fetchFilmByID(sId));
+    dispatch(fetchSimilarByID(sId));
+    dispatch(fetchCommentsByID(sId));
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilms());
+    }
+  }, [id, dispatch, authorizationStatus]);
+
+  const addHandler = () => {
+    dispatch(changeFilmFavoriteStatus({filmId: film?.id || NaN, status: +(!film?.isFavorite)}));
+    if (film?.isFavorite) {
+      dispatch(setFavoriteCount(favCount - 1));
+    } else {
+      dispatch(setFavoriteCount(favCount + 1));
+    }
+  };
 
   if (!film) {
     return <NonExistentPage/>;
@@ -75,16 +83,24 @@ function Film({films}: FilmProps): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <Link to={'/mylist'}
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </Link>
+                {authorizationStatus === AuthorizationStatus.Auth && (
+                  <button
+                    className="btn btn--list film-card__button"
+                    onClick={addHandler}
+                  >
+                    {film?.isFavorite ? (
+                      <svg viewBox="0 0 18 14" width="19" height="14">
+                        <use xlinkHref="#in-list"/>
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"/>
+                      </svg>
+                    )}
+                    <span>My list</span>
+                    <span className="film-card__count">{favCount}</span>
+                  </button>
+                )}
                 {authorizationStatus === AuthorizationStatus.Auth && (
                   <Link
                     to={`/films/${film.id}/review`}
@@ -122,11 +138,11 @@ function Film({films}: FilmProps): JSX.Element {
 
         <footer className="page-footer">
           <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
+            <Link to={AppRoute.Main} className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
