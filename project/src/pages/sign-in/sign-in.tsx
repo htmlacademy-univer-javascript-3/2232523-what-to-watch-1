@@ -1,4 +1,4 @@
-import { useNavigate, Link, Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { FormEvent, useState, useMemo, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
