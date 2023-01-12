@@ -12,7 +12,6 @@ function SignIn(): JSX.Element {
   const [passwordField, setPasswordField] = useState<string>('');
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
   const loginState = useAppSelector((state) => state[Reducer.USER_REDUCER].loginState);

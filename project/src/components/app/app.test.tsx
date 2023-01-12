@@ -12,7 +12,6 @@ import { configureMockStore } from '@jedmao/redux-mock-store';
 import { takeTestFilm, takeTestFilms } from '../../mocks/mocks';
 
 jest.mock('../../services/error-handle.ts');
-const api = createAPI();
 const middlewares = [thunk.withExtraArgument(createAPI())];
 const mockStore = configureMockStore(middlewares);
 

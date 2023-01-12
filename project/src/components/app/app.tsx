@@ -8,7 +8,7 @@ import SignIn from '../../pages/sign-in/sign-in';
 import MyList from '../../pages/my-list/my-list';
 import AddReview from '../../pages/add-review/add-review';
 import PrivateRoute from '../private-route/private-route';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import NonExistentPage from '../../pages/non-existent-page/non-existent-page';
 
