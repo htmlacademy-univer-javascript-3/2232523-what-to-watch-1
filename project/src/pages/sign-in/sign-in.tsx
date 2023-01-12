@@ -1,18 +1,17 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { FormEvent, useState, useMemo, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AuthorizationStatus } from '../../const';
 import { logIn } from '../../store/api-actions';
 import { Reducer } from '../../const';
 import { LogInState } from '../../const';
-import { setLoginState } from '../../store/user-reducer';
+import { setLoginState } from '../../store/user-reducer/user-reducer';
 
 function SignIn(): JSX.Element {
   const [emailField, setEmailField] = useState<string>('');
   const [passwordField, setPasswordField] = useState<string>('');
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
   const loginState = useAppSelector((state) => state[Reducer.USER_REDUCER].loginState);
@@ -55,7 +54,7 @@ function SignIn(): JSX.Element {
   const errorMessage = useMemo(() => showErrMessage(loginState), [loginState]);
 
   if (authorizationStatus === AuthorizationStatus.Auth){
-    navigate(AppRoute.Main);
+    return <Navigate to={'/'} />;
   }
 
   return (
@@ -79,11 +78,20 @@ function SignIn(): JSX.Element {
           </div>
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" value={emailField} onChange={(event) => setEmailField(event.target.value)}/>
+              <input
+                className="sign-in__input"
+                type="email"
+                placeholder="Email address"
+                name="user-email"
+                id="user-email"
+                data-testid='user-email'
+                value={emailField}
+                onChange={(event) => setEmailField(event.target.value)}
+              />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"id="user-password" value={passwordField} onChange={(event) => setPasswordField(event.target.value)}/>
+              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"id="user-password" data-testid='user-password' value={passwordField} onChange={(event) => setPasswordField(event.target.value)}/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>

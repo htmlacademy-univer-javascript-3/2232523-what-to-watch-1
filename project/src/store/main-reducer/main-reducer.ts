@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { sortFilmsByGenre } from '../extra-functions/genre-functions';
-import { AppState } from '../types/app-state.type';
-import { changeGenre, resetShownFilms, setError, showMoreFilms, setFavoriteCount } from './action';
-import { fetchFilms, fetchPromoFilm, fetchFavoriteFilms, changePromoFavoriteStatus } from '../store/api-actions';
-import { Reducer } from '../const';
+import { sortFilmsByGenre } from '../../extra-functions/genre-functions';
+import { AppState } from '../../types/app-state.type';
+import { changeGenre, resetShownFilms, setError, showMoreFilms, setFavoriteCount } from '../action';
+import { fetchFilms, fetchPromoFilm, fetchFavoriteFilms, changePromoFavoriteStatus } from '../api-actions';
+import { Reducer } from '../../const';
 
 const initialState: AppState = {
   films: [],
@@ -43,6 +43,9 @@ export const mainReducer = createSlice({
         state.films = action.payload;
         state.shownCount = Math.min(state.films.length, 8);
         state.sortedFilms = state.films;
+        state.dataIsLoading = false;
+      })
+      .addCase(fetchFilms.rejected, (state) => {
         state.dataIsLoading = false;
       })
       .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
