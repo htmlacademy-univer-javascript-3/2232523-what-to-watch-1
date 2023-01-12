@@ -1,10 +1,10 @@
-import { Reducer } from '../const';
+import { Reducer } from '../../const';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthorizationStatus } from '../const';
-import { LogInState } from '../const';
-import { UserState } from '../types/app-state.type.js';
-import { dropToken } from '../services/token';
-import { getAuthStatus, logIn, logOut } from './api-actions';
+import { AuthorizationStatus } from '../../const';
+import { LogInState } from '../../const';
+import { UserState } from '../../types/app-state.type.js';
+import { dropToken, saveToken } from '../../services/token';
+import { getAuthStatus, logIn, logOut } from '../api-actions';
 
 const initialState: UserState = {
   authorizationStatus: AuthorizationStatus.NoAuth,
@@ -28,6 +28,7 @@ export const userReducer = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(logIn.fulfilled, (state, action) => {
+        saveToken(action.payload.token);
         state.avatar = action.payload.avatarUrl;
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.loginState = LogInState.NoError;

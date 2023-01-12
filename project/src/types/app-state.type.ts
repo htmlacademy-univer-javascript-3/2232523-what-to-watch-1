@@ -3,7 +3,6 @@ import { FilmType } from './film-type';
 import { AuthorizationStatus } from '../const';
 import { Review } from '../types/film-type';
 import { LogInState } from '../const';
-import { UserData } from './user-data';
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -26,7 +25,7 @@ export type UserState = {
 }
 
 export type FilmState = {
-  film: FilmType | null,
+  film: FilmType | null | undefined,
   reviews: Review[],
   similarFilms: FilmType[],
   isFilmLoading: boolean

@@ -4,11 +4,10 @@ import { Review } from '../types/film-type';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { FilmType } from '../types/film-type';
-import { UserComment } from '../types/user-review';
+import { UserReview } from '../types/user-review';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/app-state.type';
-import { saveToken } from '../services/token';
 
 export const fetchFilms = createAsyncThunk<FilmType[], undefined, {
   state: State;
@@ -56,7 +55,7 @@ export const logIn = createAsyncThunk<UserData, AuthData, {
       email,
       password,
     });
-    saveToken(data.token);
+    //saveToken(data.token);
     return data;
   }
 );
@@ -108,14 +107,14 @@ export const fetchSimilarByID = createAsyncThunk<FilmType[], string, {
   }
 );
 
-export const postReview = createAsyncThunk<void, UserComment, {
+export const postReview = createAsyncThunk<void, UserReview, {
     dispatch: AppDispatch;
     state: State;
     extra: AxiosInstance;
 }>(
   'data/postReviewById',
   async ({ comment, rating, filmId }, { extra: api }) => {
-    await api.post<UserComment>(`${APIRoute.Comments}/${filmId}`, {
+    await api.post<UserReview>(`${APIRoute.Comments}/${filmId}`, {
       comment,
       rating,
     });

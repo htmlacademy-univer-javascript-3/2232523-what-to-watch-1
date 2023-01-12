@@ -22,42 +22,40 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<WelcomeScreen />}
-        />
-        <Route
-          path={AppRoute.Film}
-          element={<Film/>}
-        />
-        <Route
-          path={AppRoute.Player}
-          element={<Player />}
-        />
-        <Route
-          path={AppRoute.SignIn}
-          element={<SignIn />}
-        />
-        <Route
-          path={AppRoute.MyList}
-          element={
-            <PrivateRoute>
-              <MyList/>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={AppRoute.AddReview}
-          element={<AddReview />}
-        />
-        <Route
-          path="*"
-          element={<NonExistentPage />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path={AppRoute.Main}
+        element={<WelcomeScreen />}
+      />
+      <Route
+        path={AppRoute.Film}
+        element={<Film/>}
+      />
+      <Route
+        path={AppRoute.Player}
+        element={<Player />}
+      />
+      <Route
+        path={AppRoute.SignIn}
+        element={<SignIn />}
+      />
+      <Route
+        path={AppRoute.MyList}
+        element={
+          <PrivateRoute>
+            <MyList/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={AppRoute.AddReview}
+        element={<AddReview />}
+      />
+      <Route
+        path="*"
+        element={<NonExistentPage />}
+      />
+    </Routes>
   );
 }
 

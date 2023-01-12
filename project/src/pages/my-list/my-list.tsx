@@ -1,15 +1,17 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Reducer } from '../../const';
 import User from '../../components/user/user';
-import { /*Reducer,*/ AuthorizationStatus } from '../../const';
+import { AuthorizationStatus } from '../../const';
 import FilmCard from '../../components/film-card/film-card';
 import { fetchFavoriteFilms } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export default function MyList() {
-  const authorizationStatus = useAppSelector((state) => state.USER_REDUCER.authorizationStatus);
-  const favoriteFilms = useAppSelector((state) => state.MAIN_REDUCER.favoriteFilms);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
+  const favoriteFilms = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteFilms);
   const dispatch = useAppDispatch();
+  const favCount = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteCount);
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -28,7 +30,7 @@ export default function MyList() {
         </div>
 
         <h1 className="page-title user-page__title">
-            My list <span className="user-page__film-count">9</span>
+            My list <span className="user-page__film-count">{favCount}</span>
         </h1>
         <User/>
       </header>
