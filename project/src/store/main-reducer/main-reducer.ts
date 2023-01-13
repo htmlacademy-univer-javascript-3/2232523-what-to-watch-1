@@ -18,9 +18,15 @@ const initialState: AppState = {
 };
 
 export const mainReducer = createSlice({
-  name: Reducer.MAIN_REDUCER,
+  name: Reducer.mainReducer,
   initialState,
-  reducers: {},
+  reducers: {
+    resetMainScreen: (state) => {
+      state.currentGenre = 'All genres';
+      state.sortedFilms = state.films;
+      state.shownCount = Math.min(state.films.length, 8);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(changeGenre, (state, action) => {
@@ -65,3 +71,5 @@ export const mainReducer = createSlice({
   },
 }
 );
+
+export const {resetMainScreen} = mainReducer.actions;

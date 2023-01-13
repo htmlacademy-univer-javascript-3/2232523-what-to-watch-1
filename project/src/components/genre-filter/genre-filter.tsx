@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { resetShownFilms, changeGenre } from '../../store/action';
 
 export default function GenreFilter() {
-  const currentGenre = useAppSelector((state) => state[Reducer.MAIN_REDUCER].currentGenre);
-  const films = useAppSelector((state) => state[Reducer.MAIN_REDUCER].films);
+  const currentGenre = useAppSelector((state) => state[Reducer.mainReducer].currentGenre);
+  const films = useAppSelector((state) => state[Reducer.mainReducer].films);
   const genres = getGenres(films);
   const dispatch = useAppDispatch();
 

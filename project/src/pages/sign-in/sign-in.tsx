@@ -4,9 +4,11 @@ import Logo from '../../components/logo/logo';
 import { logIn } from '../../store/api-actions';
 import { Link, Navigate } from 'react-router-dom';
 import { AuthorizationStatus } from '../../const';
+import { errorHandle } from '../../services/error-handle';
 import { FormEvent, useState, useMemo, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setLoginState } from '../../store/user-reducer/user-reducer';
+import { resetMainScreen } from '../../store/main-reducer/main-reducer';
 
 function SignIn(): JSX.Element {
   const [emailField, setEmailField] = useState<string>('');
@@ -14,8 +16,8 @@ function SignIn(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
-  const loginState = useAppSelector((state) => state[Reducer.USER_REDUCER].loginState);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
+  const loginState = useAppSelector((state) => state[Reducer.userReducer].loginState);
 
   const formRef = useRef(null);
 
@@ -35,7 +37,9 @@ function SignIn(): JSX.Element {
       } else if (isPasswordCorrect()) {
         dispatch(setLoginState(LogInState.NotValidPassword));
       } else {
-        dispatch(logIn({email: emailField, password: passwordField}));
+        dispatch(resetMainScreen());
+        dispatch(logIn({email: emailField, password: passwordField}))
+          .catch((err) => errorHandle(`Something went wrong. ${err.message}`));
       }
     }
   };
@@ -43,11 +47,23 @@ function SignIn(): JSX.Element {
   const showErrMessage = (logInState: LogInState) => {
     switch (logInState) {
       case LogInState.NotValidEmail:
-        return (<p>Email не корректный</p>);
+        return (
+          <div className="sign-in__message">
+            <p>Email is not correct</p>
+          </div>
+        );
       case LogInState.NotValidPassword:
-        return (<p>Пароль не корректный: он должен содержать как минимум 1 цифру и 1 букву</p>);
+        return (
+          <div className="sign-in__message">
+            <p>Password is not correct. He should contain at less 1 digit and 1 letter</p>
+          </div>
+        );
       case LogInState.NotValidEmailAndPassword:
-        return (<p>Email и пароль не корректные</p>);
+        return (
+          <div className="sign-in__message">
+            <p>Email and password are not correct</p>
+          </div>
+        );
       default:
         return null;
     }
@@ -74,9 +90,7 @@ function SignIn(): JSX.Element {
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" ref={formRef} onSubmit={submitHandler}>
-          <div className="sign-in__message">
-            {errorMessage}
-          </div>
+          {errorMessage}
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input

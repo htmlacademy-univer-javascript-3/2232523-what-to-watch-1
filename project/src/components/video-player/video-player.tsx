@@ -14,7 +14,7 @@ function VideoPlayer({film}: VideoPlayerProps) {
     return () => clearTimeout(timeout);
   });
 
-  return <video ref={videoRef} src={film.videoLink} width={280} height={175} muted/>;
+  return <video ref={videoRef} src={film.videoLink} width='280' height='175' muted/>;
 }
 
 export default VideoPlayer;
