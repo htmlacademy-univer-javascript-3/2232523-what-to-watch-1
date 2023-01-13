@@ -1,14 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFilmByID } from '../../store/api-actions';
-import Load from '../../components/loader/loader';
 import { Reducer } from '../../const';
+import Load from '../../components/loader/loader';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { fetchFilmByID } from '../../store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 function Player(): JSX.Element {
   const filmId = Number(useParams().id);
-  const film = useAppSelector((state) => state[Reducer.FILM_REDUCER].film);
-  const isFilmLoadingStatus = useAppSelector((state) => state[Reducer.FILM_REDUCER].isFilmLoading);
+  const film = useAppSelector((state) => state[Reducer.filmReducer].film);
+  const isFilmLoadingStatus = useAppSelector((state) => state[Reducer.filmReducer].isFilmLoading);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPause, setIsPause] = useState(false);
@@ -70,7 +70,11 @@ function Player(): JSX.Element {
       >
       </video>
 
-      <Link to={`/films/${film?.id}`} type="button" className="player__exit">
+      <Link
+        to={`/films/${film?.id}`}
+        type="button"
+        className="player__exit"
+      >
           Exit
       </Link>
 

@@ -4,20 +4,20 @@ import User from '../../components/user/user';
 import Logo from '../../components/logo/logo';
 import { Link, useParams } from 'react-router-dom';
 import { setFavoriteCount } from '../../store/action';
+import CatalogForFilm from '../../components/catalog-for-film/catalog-for-film';
 import { Reducer, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import NonExistentPage from '../non-existent-page/non-existent-page';
-import SimilarFilms from '../../components/similar-films/similar-films';
 import FilmDescription from '../../components/film-description/film-description';
 import { fetchCommentsByID, fetchFilmByID, fetchSimilarByID, fetchFavoriteFilms, changeFilmFavoriteStatus } from '../../store/api-actions';
 
 function Film(): JSX.Element {
   const id = Number(useParams().id);
-  const film = useAppSelector((state) => state[Reducer.FILM_REDUCER].film);
-  const reviews = useAppSelector((state) => state[Reducer.FILM_REDUCER].reviews);
-  const similarFilms = useAppSelector((state) => state[Reducer.FILM_REDUCER].similarFilms);
-  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
-  const favCount = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteCount);
+  const film = useAppSelector((state) => state[Reducer.filmReducer].film);
+  const reviews = useAppSelector((state) => state[Reducer.filmReducer].reviews);
+  const favCount = useAppSelector((state) => state[Reducer.mainReducer].favoriteCount);
+  const similarFilms = useAppSelector((state) => state[Reducer.filmReducer].similarFilms);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
 
   const dispatch = useAppDispatch();
 
@@ -124,10 +124,7 @@ function Film(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <SimilarFilms currentFilm={film} similarFilms={similarFilms}/>
-          </div>
+          <CatalogForFilm currentFilm={film} similarFilms={similarFilms}/>
         </section>
 
         <footer className="page-footer">

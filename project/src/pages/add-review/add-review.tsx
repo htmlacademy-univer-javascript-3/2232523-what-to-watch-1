@@ -11,7 +11,7 @@ import { Reducer, AppRoute, AuthorizationStatus } from '../../const';
 
 function AddReview(): JSX.Element {
   const id = Number(useParams().id);
-  const film = useAppSelector((state) => state[Reducer.FILM_REDUCER].film);
+  const film = useAppSelector((state) => state[Reducer.filmReducer].film);
   const authStatus = useAppSelector(
     (state) => state.USER_REDUCER.authorizationStatus
   );

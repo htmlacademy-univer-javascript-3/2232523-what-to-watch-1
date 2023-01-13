@@ -8,10 +8,10 @@ import { fetchFavoriteFilms } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export default function MyList() {
-  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
-  const favoriteFilms = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteFilms);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
+  const favoriteFilms = useAppSelector((state) => state[Reducer.mainReducer].favoriteFilms);
   const dispatch = useAppDispatch();
-  const favCount = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteCount);
+  const favCount = useAppSelector((state) => state[Reducer.mainReducer].favoriteCount);
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {

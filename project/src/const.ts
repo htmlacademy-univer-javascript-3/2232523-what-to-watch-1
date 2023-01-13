@@ -24,9 +24,9 @@ export enum APIRoute {
 }
 
 export enum Reducer {
-  USER_REDUCER = 'USER_REDUCER',
-  MAIN_REDUCER = 'MAIN_REDUCER',
-  FILM_REDUCER = 'FILM_REDUCER'
+  userReducer = 'USER_REDUCER',
+  mainReducer = 'MAIN_REDUCER',
+  filmReducer = 'FILM_REDUCER'
 }
 
 export enum LogInState {

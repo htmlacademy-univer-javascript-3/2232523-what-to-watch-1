@@ -4,16 +4,16 @@ import { Link } from 'react-router-dom';
 import User from '../../components/user/user';
 import Logo from '../../components/logo/logo';
 import { setFavoriteCount } from '../../store/action';
-import Catalog from '../../components/catalog/catalog';
 import { Reducer, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import GenreFilter from '../../components/genre-filter/genre-filter';
+import CatalogForMain from '../../components/catalog-for-main/catalog-for-main';
 import { fetchFavoriteFilms, changePromoFavoriteStatus } from '../../store/api-actions';
 
 function WelcomeScreen(): JSX.Element {
-  const promo = useAppSelector((state) => state[Reducer.MAIN_REDUCER].promo);
-  const favCount = useAppSelector((state) => state[Reducer.MAIN_REDUCER].favoriteCount);
-  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
+  const promo = useAppSelector((state) => state[Reducer.mainReducer].promo);
+  const favCount = useAppSelector((state) => state[Reducer.mainReducer].favoriteCount);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
   const dispatch = useAppDispatch();
 
   const addHandler = () => {
@@ -99,7 +99,7 @@ function WelcomeScreen(): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreFilter/>
-          <Catalog/>
+          <CatalogForMain/>
         </section>
 
         <footer className="page-footer">

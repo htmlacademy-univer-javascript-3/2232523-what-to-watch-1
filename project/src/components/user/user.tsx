@@ -8,8 +8,8 @@ import { useAppSelector, useAppDispatch } from '../../hooks';
 function User(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const avatar = useAppSelector((state) => state[Reducer.USER_REDUCER].avatar);
-  const authorizationStatus = useAppSelector((state) => state[Reducer.USER_REDUCER].authorizationStatus);
+  const avatar = useAppSelector((state) => state[Reducer.userReducer].avatar);
+  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
 
   const signOutClickHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();

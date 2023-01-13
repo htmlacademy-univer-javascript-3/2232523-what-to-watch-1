@@ -1,5 +1,5 @@
-function Load(): JSX.Element {
-  return <h1>Загрузка</h1>;
-}
+import './loader.css';
 
-export default Load;
+const Loader = () => <div className="loader"></div>;
+
+export default Loader;

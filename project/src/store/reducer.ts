@@ -5,9 +5,9 @@ import { filmReducer } from './film-reducer/film-reducer';
 import { mainReducer } from './main-reducer/main-reducer';
 
 const rootReducer = combineReducers({
-  [Reducer.FILM_REDUCER]: filmReducer.reducer,
-  [Reducer.MAIN_REDUCER]: mainReducer.reducer,
-  [Reducer.USER_REDUCER]: userReducer.reducer
+  [Reducer.filmReducer]: filmReducer.reducer,
+  [Reducer.mainReducer]: mainReducer.reducer,
+  [Reducer.userReducer]: userReducer.reducer
 });
 
 export { rootReducer };

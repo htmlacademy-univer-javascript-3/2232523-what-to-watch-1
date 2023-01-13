@@ -1,13 +1,13 @@
-import { configureMockStore } from '@jedmao/redux-mock-store';
-import { Action, ThunkDispatch } from '@reduxjs/toolkit';
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import { takeTestFilms } from '../../mocks/mocks';
+import { Provider } from 'react-redux';
 import { createAPI } from '../../services/api';
+import { MemoryRouter } from 'react-router-dom';
+import CatalogForMain from './catalog-for-main';
+import { takeTestFilms } from '../../mocks/mocks';
 import { State } from '../../types/app-state.type';
-import Catalog from './catalog';
+import { render, screen } from '@testing-library/react';
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 
 jest.mock('../../services/error-handle.ts');
 const api = createAPI();
@@ -20,8 +20,8 @@ const mockStore = configureMockStore<
 
 const testFilms = takeTestFilms();
 
-describe('catalog tests', () => {
-  it('should render correctly', () => {
+describe('catalog for main tests', () => {
+  it('should render correctly if on main', () => {
     const store = mockStore({
       MAIN_REDUCER: {
         sortedFilms: testFilms,
@@ -31,7 +31,7 @@ describe('catalog tests', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Catalog />
+          <CatalogForMain/>
         </MemoryRouter>
       </Provider>
     );
@@ -51,7 +51,7 @@ describe('catalog tests', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Catalog />
+          <CatalogForMain/>
         </MemoryRouter>
       </Provider>
     );
@@ -71,7 +71,7 @@ describe('catalog tests', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Catalog />
+          <CatalogForMain/>
         </MemoryRouter>
       </Provider>
     );
@@ -91,7 +91,7 @@ describe('catalog tests', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Catalog />
+          <CatalogForMain/>
         </MemoryRouter>
       </Provider>
     );

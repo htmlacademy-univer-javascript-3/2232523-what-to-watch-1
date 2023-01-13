@@ -13,7 +13,7 @@ import WelcomeScreen from '../../pages/welcome-screen/welcome-screen';
 import NonExistentPage from '../../pages/non-existent-page/non-existent-page';
 
 function App(): JSX.Element {
-  const isLoading = useAppSelector((state) => state[Reducer.MAIN_REDUCER].dataIsLoading);
+  const isLoading = useAppSelector((state) => state[Reducer.mainReducer].dataIsLoading);
 
   if (isLoading) {
     return (
@@ -49,7 +49,11 @@ function App(): JSX.Element {
       />
       <Route
         path={AppRoute.AddReview}
-        element={<AddReview />}
+        element={
+          <PrivateRoute>
+            <AddReview />
+          </PrivateRoute>
+        }
       />
       <Route
         path="*"
