@@ -20,7 +20,7 @@ function User(): JSX.Element {
     return (
       <ul className="user-block">
         <li className="user-block__item">
-          <Link to='/login' className='user-block__link'>Sign in</Link>
+          <Link to='/login' className='user-block__link' data-testid='login-link'>Sign in</Link>
         </li>
       </ul>
     );
@@ -28,8 +28,8 @@ function User(): JSX.Element {
   return (
     <ul className="user-block">
       <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img src={avatar || ''} alt="User avatar" width="63" height="63" onClick={() => navigate(AppRoute.MyList)}/>
+        <div className="user-block__avatar" role="user-block-avatar">
+          <img src={avatar || ''} alt="User avatar" width="63" height="63" onClick={() => navigate(AppRoute.MyList)} data-testid='avatar'/>
         </div>
       </li>
       <li className="user-block__item">

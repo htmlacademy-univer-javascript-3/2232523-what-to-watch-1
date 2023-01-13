@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { AppRoute } from '../../const';
 import User from '../../components/user/user';
+import Logo from '../../components/logo/logo';
 import { Link, useParams } from 'react-router-dom';
 import { setFavoriteCount } from '../../store/action';
 import { Reducer, AuthorizationStatus } from '../../const';
@@ -54,13 +54,7 @@ function Film(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <div className="logo">
-              <Link to={AppRoute.Main} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
+            <Logo/>
             <User/>
           </header>
 
@@ -137,13 +131,7 @@ function Film(): JSX.Element {
         </section>
 
         <footer className="page-footer">
-          <div className="logo">
-            <Link to={AppRoute.Main} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
+          <Logo/>
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>

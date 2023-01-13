@@ -1,8 +1,4 @@
-export enum FilmTabs {
-  Overview = 'Overview',
-  Details = 'Details',
-  Reviews = 'Reviews'
-}
+import { FilmTabs } from '../../const';
 
 type TabsProps = {
   currentTab: string,

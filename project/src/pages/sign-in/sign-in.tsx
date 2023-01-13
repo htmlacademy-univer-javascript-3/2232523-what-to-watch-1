@@ -1,10 +1,11 @@
-import { Link, Navigate } from 'react-router-dom';
-import { FormEvent, useState, useMemo, useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { AuthorizationStatus } from '../../const';
-import { logIn } from '../../store/api-actions';
 import { Reducer } from '../../const';
 import { LogInState } from '../../const';
+import Logo from '../../components/logo/logo';
+import { logIn } from '../../store/api-actions';
+import { Link, Navigate } from 'react-router-dom';
+import { AuthorizationStatus } from '../../const';
+import { FormEvent, useState, useMemo, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setLoginState } from '../../store/user-reducer/user-reducer';
 
 function SignIn(): JSX.Element {
@@ -91,7 +92,16 @@ function SignIn(): JSX.Element {
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"id="user-password" data-testid='user-password' value={passwordField} onChange={(event) => setPasswordField(event.target.value)}/>
+              <input
+                className="sign-in__input"
+                type="password"
+                placeholder="Password"
+                name="user-password"
+                id="user-password"
+                data-testid='user-password'
+                value={passwordField}
+                onChange={(event) => setPasswordField(event.target.value)}
+              />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
@@ -102,13 +112,7 @@ function SignIn(): JSX.Element {
       </div>
 
       <footer className="page-footer">
-        <div className="logo">
-          <Link to={'/'} className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+        <Logo/>
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>

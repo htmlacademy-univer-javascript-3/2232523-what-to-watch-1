@@ -36,4 +36,11 @@ export enum LogInState {
   NotValidEmailAndPassword
 }
 
+export enum FilmTabs {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews'
+}
+
+
 export const TIMEOUT_SHOW_ERROR = 2000;

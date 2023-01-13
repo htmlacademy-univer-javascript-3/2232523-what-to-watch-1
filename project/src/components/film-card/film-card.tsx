@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import VideoPlayer from '../videoplayer/videoPlayer';
+import VideoPlayer from '../video-player/video-player';
 import {FilmType} from '../../types/film-type';
 import React from 'react';
 
@@ -16,6 +16,7 @@ export default function FilmCard(props: FilmCardProps) {
       className="small-film-card catalog__films-card"
       onMouseEnter={() => setActiveFilm(props.film.id)}
       onMouseLeave={() => setActiveFilm(NaN)}
+      data-testid='film-card'
     >
       <div className="small-film-card__image">
         {activeFilm === props.film.id ? (
@@ -25,7 +26,7 @@ export default function FilmCard(props: FilmCardProps) {
         )}
       </div>
       <h3 className="small-film-card__title">
-        <Link to={`/films/${props.film.id}`} className="small-film-card__link">
+        <Link to={`/films/${props.film.id}`} className="small-film-card__link" data-testid='film-link'>
           {props.film.name}
         </Link>
       </h3>
