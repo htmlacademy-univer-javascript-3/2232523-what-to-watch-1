@@ -84,7 +84,7 @@ function Player(): JSX.Element {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={actByPlayPauseClick}>
+          <button type="button" className="player__play" data-testid='player' onClick={actByPlayPauseClick}>
             {isPause ? (
               <>
                 <svg viewBox="0 0 19 19" width="19" height="19">

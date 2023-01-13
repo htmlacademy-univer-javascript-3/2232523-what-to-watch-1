@@ -1,15 +1,10 @@
 import Tabs from '../tabs/tabs';
-import { FilmType, Review } from '../../types/film-type';
 import { useState } from 'react';
+import { FilmTabs } from '../../const';
 import Details from '../details/details';
-import ReviewsList from '../reviews-list/reviews-list';
 import Overview from '../overview/overview';
-
-export enum FilmTabs {
-  OverviewT = 'Overview',
-  DetailsT = 'Details',
-  ReviewsT = 'Reviews'
-}
+import ReviewsList from '../reviews-list/reviews-list';
+import { FilmType, Review } from '../../types/film-type';
 
 type FilmDescProps = {
   film: FilmType;
@@ -17,7 +12,7 @@ type FilmDescProps = {
 }
 
 function FilmDescription({film, reviews}: FilmDescProps): JSX.Element {
-  const [pageTab, setPageTab] = useState<string>(FilmTabs.OverviewT);
+  const [pageTab, setPageTab] = useState<string>(FilmTabs.Overview);
 
   return (
     <div className="film-card__desc">
@@ -28,7 +23,7 @@ function FilmDescription({film, reviews}: FilmDescProps): JSX.Element {
         }}
       />
       {
-        pageTab === FilmTabs.OverviewT &&
+        pageTab === FilmTabs.Overview &&
         <Overview
           rating={film.rating}
           votesNumber={film.scoresCount}
@@ -38,7 +33,7 @@ function FilmDescription({film, reviews}: FilmDescProps): JSX.Element {
         />
       }
       {
-        pageTab === FilmTabs.DetailsT &&
+        pageTab === FilmTabs.Details &&
         <Details
           director={film.director}
           actors={film.starring}
@@ -47,7 +42,7 @@ function FilmDescription({film, reviews}: FilmDescProps): JSX.Element {
           releaseYear={film.released}
         />
       }
-      {pageTab === FilmTabs.ReviewsT && <ReviewsList reviews={reviews} />}
+      {pageTab === FilmTabs.Reviews && <ReviewsList reviews={reviews} />}
     </div>
   );
 }

@@ -12,6 +12,8 @@ import { render, screen } from '@testing-library/react';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 
+const testFilms = takeTestFilms();
+
 jest.mock('../../services/error-handle.ts');
 const api = createAPI();
 const middlewares = [thunk.withExtraArgument(api)];
@@ -20,7 +22,6 @@ const testStore = configureMockStore<
   Action,
   ThunkDispatch<State, typeof api, Action>
 >(middlewares);
-const testFilms = takeTestFilms();
 
 const store = testStore({
   USER_REDUCER: {
