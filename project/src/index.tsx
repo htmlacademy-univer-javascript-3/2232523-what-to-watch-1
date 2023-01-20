@@ -4,6 +4,7 @@ import App from './components/app/app';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 import Error from './components/error/error';
+import { ToastContainer } from 'react-toastify';
 import { BrowserRouter } from 'react-router-dom';
 import { fetchFilms, getAuthStatus, fetchPromoFilm } from './store/api-actions';
 
@@ -19,6 +20,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <ToastContainer/>
         <Error />
         <App />
       </BrowserRouter>

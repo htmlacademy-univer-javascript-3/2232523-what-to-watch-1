@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
-import { Reducer } from '../../const';
 import User from '../../components/user/user';
 import Logo from '../../components/logo/logo';
 import { AuthorizationStatus } from '../../const';
 import FilmCard from '../../components/film-card/film-card';
 import { fetchFavoriteFilms } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-reducer/user-selectors';
+import { getFavouriteFilms, getFavouriteCount } from '../../store/main-reducer/main-selectors';
 
 export default function MyList() {
-  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
-  const favoriteFilms = useAppSelector((state) => state[Reducer.mainReducer].favoriteFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoriteFilms = useAppSelector(getFavouriteFilms);
   const dispatch = useAppDispatch();
-  const favCount = useAppSelector((state) => state[Reducer.mainReducer].favoriteCount);
+  const favCount = useAppSelector(getFavouriteCount);
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Reducer } from '../../const';
 import { useAppSelector } from '../../hooks';
 import FilmCard from '../film-card/film-card';
 import ShowMoreButton from '../show-more-button/show-more-button';
+import { getSortedFilms, getShownCount } from '../../store/main-reducer/main-selectors';
 
 function CatalogForMain(): JSX.Element {
-  const sortedFilms = useAppSelector((state) => state[Reducer.mainReducer].sortedFilms);
-  const shownCount = useAppSelector((state) => state[Reducer.mainReducer].shownCount);
+  const sortedFilms = useAppSelector(getSortedFilms);
+  const shownCount = useAppSelector(getShownCount);
   return (
     <React.Fragment>
       <div className="catalog__films-list">

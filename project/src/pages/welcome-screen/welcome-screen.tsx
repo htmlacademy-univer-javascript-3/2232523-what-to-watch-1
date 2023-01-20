@@ -3,17 +3,19 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import User from '../../components/user/user';
 import Logo from '../../components/logo/logo';
+import { AuthorizationStatus } from '../../const';
 import { setFavoriteCount } from '../../store/action';
-import { Reducer, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import GenreFilter from '../../components/genre-filter/genre-filter';
 import CatalogForMain from '../../components/catalog-for-main/catalog-for-main';
+import { getAuthorizationStatus } from '../../store/user-reducer/user-selectors';
+import { getPromo, getFavouriteCount } from '../../store/main-reducer/main-selectors';
 import { fetchFavoriteFilms, changePromoFavoriteStatus } from '../../store/api-actions';
 
 function WelcomeScreen(): JSX.Element {
-  const promo = useAppSelector((state) => state[Reducer.mainReducer].promo);
-  const favCount = useAppSelector((state) => state[Reducer.mainReducer].favoriteCount);
-  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
+  const promo = useAppSelector(getPromo);
+  const favCount = useAppSelector(getFavouriteCount);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   const addHandler = () => {

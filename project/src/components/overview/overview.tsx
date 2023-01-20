@@ -13,7 +13,7 @@ export default function Overview(props: OverviewProps) {
   return (
     <Fragment>
       <div className="film-rating">
-        <div className="film-rating__score">{props.rating}</div>
+        <div className="film-rating__score">{props.rating.toFixed(1)}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{getRating(props.rating)}</span>
           <span className="film-rating__count">{props.votesNumber}</span>

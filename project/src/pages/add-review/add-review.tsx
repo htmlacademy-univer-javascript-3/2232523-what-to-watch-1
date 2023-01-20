@@ -3,18 +3,18 @@ import Logo from '../../components/logo/logo';
 import User from '../../components/user/user';
 import { setDataIsLoading } from '../../store/action';
 import { fetchFilmByID } from '../../store/api-actions';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import ReviewForm from '../../components/review-form/review-form';
-import { Reducer, AppRoute, AuthorizationStatus } from '../../const';
+import { getFilm } from '../../store/film-reducer/film-selectors';
+import { getAuthorizationStatus } from '../../store/user-reducer/user-selectors';
 
 
 function AddReview(): JSX.Element {
   const id = Number(useParams().id);
-  const film = useAppSelector((state) => state[Reducer.filmReducer].film);
-  const authStatus = useAppSelector(
-    (state) => state.USER_REDUCER.authorizationStatus
-  );
+  const film = useAppSelector(getFilm);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   const dispatch = useAppDispatch();
   useEffect(() => {

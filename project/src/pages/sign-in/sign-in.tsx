@@ -1,4 +1,3 @@
-import { Reducer } from '../../const';
 import { LogInState } from '../../const';
 import Logo from '../../components/logo/logo';
 import { logIn } from '../../store/api-actions';
@@ -9,6 +8,7 @@ import { FormEvent, useState, useMemo, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setLoginState } from '../../store/user-reducer/user-reducer';
 import { resetMainScreen } from '../../store/main-reducer/main-reducer';
+import { getAuthorizationStatus, getLoginState } from '../../store/user-reducer/user-selectors';
 
 function SignIn(): JSX.Element {
   const [emailField, setEmailField] = useState<string>('');
@@ -16,8 +16,8 @@ function SignIn(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
-  const loginState = useAppSelector((state) => state[Reducer.userReducer].loginState);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const loginState = useAppSelector(getLoginState);
 
   const formRef = useRef(null);
 

@@ -2,22 +2,25 @@ import React from 'react';
 import { useEffect } from 'react';
 import User from '../../components/user/user';
 import Logo from '../../components/logo/logo';
+import { AuthorizationStatus } from '../../const';
 import { Link, useParams } from 'react-router-dom';
 import { setFavoriteCount } from '../../store/action';
-import CatalogForFilm from '../../components/catalog-for-film/catalog-for-film';
-import { Reducer, AuthorizationStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import NonExistentPage from '../non-existent-page/non-existent-page';
+import { getFavouriteCount } from '../../store/main-reducer/main-selectors';
+import CatalogForFilm from '../../components/catalog-for-film/catalog-for-film';
+import { getAuthorizationStatus } from '../../store/user-reducer/user-selectors';
 import FilmDescription from '../../components/film-description/film-description';
+import { getFilm, getReviews, getSimilarFilms } from '../../store/film-reducer/film-selectors';
 import { fetchCommentsByID, fetchFilmByID, fetchSimilarByID, fetchFavoriteFilms, changeFilmFavoriteStatus } from '../../store/api-actions';
 
 function Film(): JSX.Element {
   const id = Number(useParams().id);
-  const film = useAppSelector((state) => state[Reducer.filmReducer].film);
-  const reviews = useAppSelector((state) => state[Reducer.filmReducer].reviews);
-  const favCount = useAppSelector((state) => state[Reducer.mainReducer].favoriteCount);
-  const similarFilms = useAppSelector((state) => state[Reducer.filmReducer].similarFilms);
-  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
+  const film = useAppSelector(getFilm);
+  const reviews = useAppSelector(getReviews);
+  const favCount = useAppSelector(getFavouriteCount);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const dispatch = useAppDispatch();
 

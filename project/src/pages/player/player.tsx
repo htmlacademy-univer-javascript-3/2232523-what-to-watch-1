@@ -1,14 +1,14 @@
-import { Reducer } from '../../const';
 import Load from '../../components/loader/loader';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { fetchFilmByID } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFilm, getIsFilmLoadingStatus } from '../../store/film-reducer/film-selectors';
 
 function Player(): JSX.Element {
   const filmId = Number(useParams().id);
-  const film = useAppSelector((state) => state[Reducer.filmReducer].film);
-  const isFilmLoadingStatus = useAppSelector((state) => state[Reducer.filmReducer].isFilmLoading);
+  const film = useAppSelector(getFilm);
+  const isFilmLoadingStatus = useAppSelector(getIsFilmLoadingStatus);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPause, setIsPause] = useState(false);

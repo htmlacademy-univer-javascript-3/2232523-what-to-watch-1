@@ -7,11 +7,13 @@ type CatalogForFilmProps = {
 }
 
 function CatalogForFilm({currentFilm, similarFilms}: CatalogForFilmProps): JSX.Element {
+  const similarFilmsOnPage = similarFilms
+    .filter((film) => film.id !== currentFilm.id)
+    .slice(0, 4);
   return (
     <div className="catalog__films-list">
       {
-        similarFilms.filter((film) => film.id !== currentFilm.id)
-          .slice(0, 4)
+        similarFilmsOnPage
           .map((film) => (
             <FilmCard
               key={film.id}

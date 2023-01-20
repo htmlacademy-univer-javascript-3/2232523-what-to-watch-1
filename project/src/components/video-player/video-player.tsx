@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import {FilmType} from '../../types/film-type';
+import { FilmType } from '../../types/film-type';
 
 type VideoPlayerProps = {
   film: FilmType;
@@ -10,8 +10,8 @@ function VideoPlayer({film}: VideoPlayerProps) {
 
   useEffect(() => {
     if (videoRef === null) { return; }
-    const timeout = setTimeout(() => {videoRef.current?.play();}, 1000);
-    return () => clearTimeout(timeout);
+    const delayBeforeFilmCardPlayback = setTimeout(() => {videoRef.current?.play();}, 1000);
+    return () => clearTimeout(delayBeforeFilmCardPlayback);
   });
 
   return <video ref={videoRef} src={film.videoLink} width='280' height='175' muted/>;

@@ -27,7 +27,8 @@ export default function ReviewForm() {
   const updateReview = useCallback(
     (evt: ChangeEvent<HTMLTextAreaElement>, reviewC: string) => {
       setReviewContent(reviewC);
-      if (evt.target.value.length >= 50 && evt.target.value.length <= 400) {
+      const reviewText = evt.target.value.length;
+      if (reviewText >= 50 && reviewText <= 400) {
         setIsReviewError(false);
       } else {
         setIsReviewError(true);

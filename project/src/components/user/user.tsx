@@ -1,15 +1,15 @@
 import React from 'react';
-import { Reducer } from '../../const';
 import { logOut } from '../../store/api-actions';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
+import { getAvatar, getAuthorizationStatus } from '../../store/user-reducer/user-selectors';
 
 function User(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const avatar = useAppSelector((state) => state[Reducer.userReducer].avatar);
-  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
+  const avatar = useAppSelector(getAvatar);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const signOutClickHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
