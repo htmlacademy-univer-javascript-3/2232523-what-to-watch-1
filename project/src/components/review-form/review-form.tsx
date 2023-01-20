@@ -1,9 +1,10 @@
+import { AxiosError } from 'axios';
 import { useAppDispatch } from '../../hooks';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { postReview } from '../../store/api-actions';
 import { handleError } from '../../services/error-handle';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ChangeEvent, FormEvent, Fragment, useState, useCallback } from 'react';
-import { AxiosError } from 'axios';
 
 export default function ReviewForm() {
   const id = Number(useParams().id).toString();
@@ -36,6 +37,7 @@ export default function ReviewForm() {
     evt.preventDefault();
     setIsFormDisabled(true);
     dispatch(postReview({comment: reviewContent, rating: starRating, filmId: id}))
+      .then(unwrapResult)
       .then(() => {
         navigate(`/films/${id}`);
       })
