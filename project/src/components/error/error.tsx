@@ -1,9 +1,9 @@
 import './error.css';
-import { Reducer } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getError } from '../../store/main-reducer/main-selectors';
 
 function Error(): JSX.Element | null {
-  const error = useAppSelector((state) => state[Reducer.mainReducer].error);
+  const error = useAppSelector(getError);
   return (error) ? <div className='error'>{error}</div> : null;
 }
 

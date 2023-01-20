@@ -1,14 +1,14 @@
-import { Reducer } from '../../const';
 import { LogInState } from '../../const';
 import Logo from '../../components/logo/logo';
 import { logIn } from '../../store/api-actions';
 import { Link, Navigate } from 'react-router-dom';
 import { AuthorizationStatus } from '../../const';
-import { errorHandle } from '../../services/error-handle';
+import { handleError } from '../../services/error-handle';
 import { FormEvent, useState, useMemo, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setLoginState } from '../../store/user-reducer/user-reducer';
 import { resetMainScreen } from '../../store/main-reducer/main-reducer';
+import { getAuthorizationStatus, getLoginState } from '../../store/user-reducer/user-selectors';
 
 function SignIn(): JSX.Element {
   const [emailField, setEmailField] = useState<string>('');
@@ -16,8 +16,8 @@ function SignIn(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state[Reducer.userReducer].authorizationStatus);
-  const loginState = useAppSelector((state) => state[Reducer.userReducer].loginState);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const loginState = useAppSelector(getLoginState);
 
   const formRef = useRef(null);
 
@@ -39,7 +39,7 @@ function SignIn(): JSX.Element {
       } else {
         dispatch(resetMainScreen());
         dispatch(logIn({email: emailField, password: passwordField}))
-          .catch((err) => errorHandle(`Something went wrong. ${err.message}`));
+          .catch((err) => handleError(`Something went wrong. ${err.message}`));
       }
     }
   };

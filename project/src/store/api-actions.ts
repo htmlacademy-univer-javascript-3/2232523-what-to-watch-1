@@ -13,7 +13,7 @@ export const fetchFilms = createAsyncThunk<FilmType[], undefined, {
   state: State;
   extra: AxiosInstance
 }>(
-  'fetchFilms',
+  'app/fetchFilms',
   async (_arg, { extra: api }) => {
     const { data } = await api.get<FilmType[]>(APIRoute.Films);
     return data;
@@ -25,7 +25,7 @@ export const getAuthStatus = createAsyncThunk<UserData, undefined, {
   state: State;
   extra: AxiosInstance
 }>(
-  'getAuthStatus',
+  'user/getAuthStatus',
   async (_arg, { extra: api }) => {
     const { data } = await api.get(APIRoute.Login);
     return data;
@@ -37,7 +37,7 @@ export const clearError = createAsyncThunk< void, undefined, {
   dipatch: AppDispatch;
   extra: AxiosInstance
 }>(
-  'clearError',
+  'app/clearError',
   async (_arg, {dispatch}) => {
     setTimeout(() => {
       dispatch(setError(null));
@@ -49,7 +49,7 @@ export const logIn = createAsyncThunk<UserData, AuthData, {
   state: State;
   extra: AxiosInstance
 }>(
-  'login',
+  'user/login',
   async ({ email, password }, { extra: api }) => {
     const { data } = await api.post<UserData>(APIRoute.Login, {
       email,
@@ -63,7 +63,7 @@ export const logOut = createAsyncThunk<void, undefined, {
   state: State;
   extra: AxiosInstance
 }>(
-  'logout',
+  'user/logout',
   async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
   }
@@ -73,7 +73,7 @@ export const fetchFilmByID = createAsyncThunk<FilmType, string, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'fetchFilmById',
+  'film/fetchFilmById',
   async (filmId: string, { extra: api }) => {
     const { data } = await api.get<FilmType>(`${APIRoute.Films}/${filmId}`);
     return data;
@@ -84,7 +84,7 @@ export const fetchCommentsByID = createAsyncThunk<Review[], string, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'fetchCommentsById',
+  'film/fetchCommentsById',
   async (filmId: string, { extra: api }) => {
     const { data } = await api.get<Review[]>(
       `${APIRoute.Comments}/${filmId}`
@@ -97,7 +97,7 @@ export const fetchSimilarByID = createAsyncThunk<FilmType[], string, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'fetchSimilarById',
+  'film/fetchSimilarById',
   async (filmId: string, { extra: api }) => {
     const { data } = await api.get<FilmType[]>(
       `${APIRoute.Films}/${filmId}${APIRoute.Similar}`
@@ -111,7 +111,7 @@ export const postReview = createAsyncThunk<void, UserReview, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'data/postReviewById',
+  'user/postReviewById',
   async ({ comment, rating, filmId }, { extra: api }) => {
     await api.post<UserReview>(`${APIRoute.Comments}/${filmId}`, {
       comment,
@@ -124,7 +124,7 @@ export const fetchPromoFilm = createAsyncThunk<FilmType, undefined, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'fetchPromoFilm',
+  'app/fetchPromoFilm',
   async (_arg, { extra: api }) => {
     const { data } = await api.get<FilmType>(APIRoute.Promo);
     return data;
@@ -135,7 +135,7 @@ export const fetchFavoriteFilms = createAsyncThunk<FilmType[], undefined, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'fetchFavoriteFilms',
+  'user/fetchFavoriteFilms',
   async (_arg, { extra: api }) => {
     const { data } = await api.get<FilmType[]>(APIRoute.Favorite);
     return data;
@@ -147,7 +147,7 @@ export const changeFilmFavoriteStatus = createAsyncThunk<FilmType, { filmId: num
     state: State;
     extra: AxiosInstance;
 }>(
-  'changeFilmFavoriteStatus',
+  'user/changeFilmFavoriteStatus',
   async ({ filmId: id, status: isFavorite }, { dispatch, extra: api }) => {
     const { data } = await api.post<FilmType>(
       `${APIRoute.Favorite}/${id}/${isFavorite}`
@@ -162,7 +162,7 @@ export const changePromoFavoriteStatus = createAsyncThunk<FilmType, { filmId: nu
     state: State;
     extra: AxiosInstance;
 }>(
-  'changePromoFavoriteStatus',
+  'user/changePromoFavoriteStatus',
   async ({ filmId: id, status: isFavorite }, { dispatch, extra: api }) => {
     const { data } = await api.post<FilmType>(
       `${APIRoute.Favorite}/${id}/${isFavorite}`

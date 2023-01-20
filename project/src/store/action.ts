@@ -1,12 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
 
 export const Action = {
-  CHANGE_GENRE: 'changeGenre',
-  SHOW_MORE_FILMS: 'showMoreFilms',
-  RESET_SHOWN_FILMS: 'resetShownFilms',
+  CHANGE_GENRE: 'app/changeGenre',
+  SHOW_MORE_FILMS: 'film/showMoreFilms',
+  RESET_SHOWN_FILMS: 'film/resetShownFilms',
   APP_SET_ERROR: 'app/setError',
-  SET_DATA_IS_LOADING: 'setDataIsLoading',
-  SET_FAVORITE_COUNT: 'setFavoriteCount'
+  SET_DATA_IS_LOADING: 'app/setDataIsLoading',
+  SET_FAVORITE_COUNT: 'user/setFavoriteCount'
 };
 
 export const changeGenre = createAction<{currentGenre: string}>(Action.CHANGE_GENRE);
