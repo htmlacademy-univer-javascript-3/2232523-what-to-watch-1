@@ -1,7 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import { getToken } from './token';
 import {StatusCodes} from 'http-status-codes';
-import { errorHandle } from './error-handle';
+import { handleError } from './error-handle';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -37,7 +37,7 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError) => {
       if (error.response && shouldDisplayError(error.response)) {
         const errorText = error.response.data.error;
-        errorHandle(`Ошибка:\n ${errorText}`);
+        handleError(`Ошибка:\n ${errorText}`);
       }
 
       throw error;
